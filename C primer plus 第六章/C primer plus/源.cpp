@@ -7,7 +7,7 @@
 
 //µÚÁùÕÂ -- ±à³ÌÁ·Ï°
 //(1)
-
+//
 //#define SUM 26
 //
 //int main()
@@ -16,11 +16,22 @@
 //	int a;
 //
 //	printf("please input letter:\n");
-//		scanf("%s", arry);
+//	for (a = 0; a < SUM; a++)
+//	{
+//		scanf("%c", &arry[a]);
+//		if (arry[a] == '\n')
+//		{
+//			break;
+//		}
+//	}
 //	printf("This is the word you typed:");
 //	for (a = 0; a < SUM; a++)
 //	{
-//		printf("%c",arry[a]);
+//		if (arry[a] == '\n')
+//		{
+//			break;
+//		}
+//		printf("%c ",arry[a]);
 //	}
 //	printf("\n");
 //	return 0;
@@ -65,6 +76,25 @@
 //	return 0;
 //}
 
+//(3)
+//
+//#define SUY 6
+//int main()
+//{
+//	char c='F';
+//	int a, b;
+//	for (a = 0; a < SUY; a++)
+//	{
+//		for (c='F',b=0; b <= a; c--,b++)
+//		{
+//			printf("%c ", c);
+//		}
+//		printf("\n");
+//	}
+//
+//	return 0;
+//}
+
 //(4)
 //
 //#define SUY 6
@@ -86,6 +116,7 @@
 //}
 
 //(5)
+//
 //int main()
 //{
 //	int i, j, num;
@@ -176,7 +207,7 @@
 //	printf("The word is pritend in reverse order:");
 //	for (; a >= 0; a--)
 //	{
-//		printf("%c", arry[a]);
+//		printf("%c ", arry[a]);
 //	}
 //	return 0;
 //}
@@ -403,8 +434,7 @@
 //		do
 //		{
 //			scanf("%c", &arry[a]);
-//			a++;
-//		}while (a != '\n');
+//		}while (arry[a]!='\n'&& ++a );
 //				for(a -= 1; a >= 0; a--)
 //				{
 //					printf("%c", arry[a]);
@@ -439,7 +469,7 @@
 
 
 //(17)
-//
+////
 //int main()
 //{
 //	double principal = 100;
@@ -470,13 +500,28 @@
 //	while (1)
 //	{
 //		friends = (friends - week) * 2;
-//		printf("The number of friends Dr.Rabnud has %d week is %d.\n ", week, friends);
-//		week++;
 //		if (friends > ASD)
 //		{
 //			break;
 //		}
+//		printf("The number of friends Dr.Rabnud has %d week is %d.\n ", week, friends);
+//		week++;
 //	}
 //
+//	return 0;
+//}
+
+//(18)
+//
+//int main()
+//{
+//	int n = 5, w = 1;
+//
+//	while(n<150)
+//	{
+//		printf("w=%d,n=%d", w, n);
+//		n = 2 * (n - w++);
+//	}
+//	printf("\n");
 //	return 0;
 //}
