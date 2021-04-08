@@ -397,3 +397,226 @@
 //		a_ct, e_ct, i_ct, o_ct, u_ct);
 //	return 0;
 //}
+
+
+//编程练习--Chapter	7 Programming	Exercises
+
+/* Programming Exercise 7-1 */
+//
+//int main()
+//{
+//	int c;     //输入的字符
+//	int N_spaces =0, L_spaces =0, A_spaces = 0;
+//
+//	printf("Please type the character yoy want to type(enter # to quit)\n");
+//	while ((c = getchar()) != '#')
+//	{
+//		if (c == ' ')
+//		{
+//			N_spaces++;     //统计空格数
+//		}
+//		if (c == '\n')
+//		{
+//			L_spaces++;     //统计换行数
+//		}
+//		if (c !=' '&&c!='\n')
+//		{
+//			A_spaces++;     //统计其它字符数
+//		}
+//	}
+//	printf("N_spaces=%d   L_spaces=%d    A_spaces=%d\n", N_spaces, L_spaces, A_spaces);
+//	return 0;
+//}
+
+
+/* Programming Exercise 7-2 */
+//
+//int main()
+//{
+//	int c;         //输入字符元素
+//	int spaces = 0;      //统计输入字符的个数
+//
+//	printf("Please type the character yoy want to type(enter # to quit)\n");
+//	while ((c = getchar()) != '#')
+//	{
+//		printf("%c-%d ", c, c);
+//		spaces++;
+//		if (spaces % 8 == 0)
+//		{
+//			printf("\n");
+//		}
+//	}
+//	return 0;
+//}
+
+
+/* Programming Exercise 7-3 */
+//
+//#define ASD 100
+//int main()
+//{
+//	int T_numbers = 0, O_numbers = 0, sum1 = 0, sum2 = 0;
+//	int c=0;
+//	int arry1[ASD] = { 0 }, arry2[ASD] = { 0 };
+//	float average1, average2;
+//
+//	printf("Please type the character yoy want to type:");
+//	while (scanf("%d", &c) != EOF)
+//	{
+//		if (c == 0)
+//		{
+//			break;
+//		}
+//		if (c % 2 == 0)
+//		{
+//			arry1[T_numbers] = c;
+//			T_numbers++;
+//			sum1 += c;
+//		}
+//		if (c % 2 == 1)
+//		{
+//			arry2[O_numbers] = c;
+//			O_numbers++;
+//			sum2 += c;
+//		}
+//		if ((c = getchar()) < 0)
+//		{
+//			printf("Wroing input,please try again:");
+//			c = getchar();
+//		}
+//	}
+//	average1 = (sum1/T_numbers);
+//	average2 = (sum2/O_numbers);
+//	printf("In total,%d even T_numbers were entered,their average is %f\n",T_numbers,average1);
+//	printf("In total,%d even O_numbers were entered,their average is %f\n",O_numbers,average2);
+//	return 0;
+//}
+
+
+/* Programming Exercise 7-3 */
+//
+//int main(void)
+//{
+//	int n;
+//	double sumeven = 0.0;    //偶数和
+//	int ct_even = 0;
+//	double sumodd = 0.0;     //奇数和
+//	int ct_odd = 0;
+//
+//	while (scanf("%d", &n) == 1 && n != 0)
+//	{
+//		if (n % 2 == 0)
+//		{
+//			sumeven += n;
+//			++ct_even;
+//		}
+//		else                  // n % 2 is either 1 or -1
+//		{
+//			sumodd += n;
+//			++ct_odd;
+//		}
+//	}
+//	printf("Number of evens: %d", ct_even);
+//	if (ct_even > 0)
+//		printf(" average: %g", sumeven / ct_even);
+//	putchar('\n');
+//
+//	printf("Number of odds: %d", ct_odd);
+//	if (ct_odd > 0)
+//		printf(" average: %g", sumodd / ct_odd);
+//	putchar('\n');
+//	printf("\ndone\n");
+//
+//	return 0;
+//}
+
+
+/* Programming Exercise 7-5 */
+//
+//int main(void)
+//{
+//	char ch;
+//	int ct1 = 0;      //统计句号数
+//	int ct2 = 0;      //统计感叹号数
+//	while ((ch = getchar()) != '#')
+//	{
+//		switch (ch)
+//		{
+//		case '.': 
+//			putchar('!');
+//			++ct1;
+//			break;
+//		case '!': 
+//			putchar('!');
+//			putchar('!');
+//			++ct2;
+//			break;
+//		default: 
+//			putchar(ch);
+//		}
+//	}
+//	printf("\n");
+//	printf("%d replacement(s) of . with !\n", ct1);
+//	printf("%d replacement(s) of ! with !!\n", ct2);
+//
+//	return 0;
+//}
+
+
+/* Programming Exercise 7-6 */
+//
+//int main(void)
+//{
+//	int c;
+//	int sum = 0;
+//
+//	while ((c = getchar()) != EOF)
+//	{
+//		if (c == 'e' && getchar() == 'i')
+//		{
+//			sum++;
+//		}
+//	}
+//	printf("\n");
+//	printf("'ei'总共出现%d次\n",sum);
+//
+//	return 0;
+//}
+
+
+/* Programming Exercise 7-7 */
+//
+//#define A_HOUR 10
+//int main(void)
+//{
+//	double w_time, total_wages, tax=0;
+//	
+//	printf("Please enter the number of working hours per week:");
+//	scanf("%lf", &w_time);
+//	//计算工资总额
+//	if (w_time <= 40)
+//	{
+//		total_wages = w_time * A_HOUR;
+//	}
+//	else if (w_time > 40)
+//	{
+//		total_wages = 40 * A_HOUR + (w_time - 40) * 1.5 * A_HOUR;
+//	}
+//	//计算税金
+//	if (total_wages <= 300)
+//	{
+//		tax = total_wages * 0.15;
+//	}
+//	else if (total_wages > 300 && total_wages <= 450)
+//	{
+//		tax = 300 * 0.15+(total_wages-300)*0.2;
+//	}
+//	else if (total_wages > 450)
+//	{
+//		tax = 300 * 0.15 + 150* 0.2+(total_wages-450)*0.25;
+//	}
+//
+//	printf("total_wages=%lf\ntax=%lf\nnet_income=%lf\n", total_wages, tax, total_wages - tax);   //net_income--净收入
+//
+//	return 0;
+//}
