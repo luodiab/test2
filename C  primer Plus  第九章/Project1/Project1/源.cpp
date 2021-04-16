@@ -78,6 +78,7 @@
 //程序清单9.3 --  lesser.c -- finds the lesser of two evils 
 //
 //#include <stdio.h>
+//
 //int imin(int, int);
 //
 //int main(void)
@@ -373,4 +374,540 @@
 //    temp = *u;
 //    *u = *v;
 //    *v = temp;
+//}
+
+
+//编程练习 -- Chapter 9 Programming	Exercises
+
+/* Programming Exercise 9-1 */
+//
+//#include <stdio.h>
+//
+//double min(double, double);
+//
+//int main(void)
+//{
+//	double x, y;
+//
+//	printf("Enter two numbers (q to quit): ");
+//	while (scanf("%lf %lf", &x, &y) == 2)
+//	{
+//		printf("The smaller number is %f.\n", min(x, y));
+//		printf("Next two values (q to quit): ");
+//	}
+//	printf("Bye!\n");
+//
+//	return 0;
+//}
+//double min(double a, double b)
+//{
+//	return a < b ? a : b;
+//}
+
+
+/* Programming Exercise 9-2 */
+//
+//#include <stdio.h>
+//
+//void chline(char ch,int x, int y);
+//
+//int main(void)
+//{
+//	int i, j;
+//    char ch;
+//
+//	printf("Enter two numbers and character you want('q q q'to quit): ");
+//	while (scanf("%c %d %d", &ch, &i, &j) ==3 )
+//	{
+//	    chline( ch, i, j);
+//		printf("Next two numbers and character you want('q q q'to quit): ");
+//		scanf("%*c");    //用来忽略'\n'
+//	}
+//	printf("Bye!\n");
+//
+//	return 0;
+//}
+//
+//void chline(char ch, int x, int y)
+//{
+//	int z = 0, k = 0;
+//	for (z = 0; z < x; z++)
+//	{
+//		for (k = 0; k < y; k++)
+//		{
+//			printf("%c", ch);
+//		}
+//		printf("\n");
+//	}
+//}
+
+
+/* Programming Exercise 9-3 */
+//
+//(1)
+//#include <stdio.h>
+//
+//void chline(char ch,int x, int y);
+//
+//int main(void)
+//{
+//	int i, j;
+//    char ch;
+//
+//	printf("Enter two numbers and character you want('q q q'to quit): ");
+//	while (scanf("%c %d %d", &ch, &i, &j) ==3 )
+//	{
+//	    chline( ch, i, j);
+//		printf("Next two numbers and character you want('q q q'to quit): ");
+//		scanf("%*c");    //用来忽略'\n'
+//	}
+//	printf("Bye!\n");
+//
+//	return 0;
+//}
+//
+//void chline(char ch, int x, int y)
+//{
+//	int z = 0, k = 0;
+//	for (z = 0; z < y; z++)
+//	{
+//		for (k = 0; k < x; k++)
+//		{
+//			printf("%c", ch);
+//		}
+//		printf("\n");
+//	}
+//}
+
+
+//(2) --本人对答案做了一些修改，当使用者输入不为俩个数字时，程序会进行提醒使用者重新输入。
+//#include <stdio.h>
+//
+//void chLineRow(char ch, int c, int r);
+//
+//int main(void)
+//{
+//	char ch;
+//	int col, row,s=0;
+//
+//	printf("Enter a character (# to quit): ");
+//	while ((ch = getchar()) != '#')
+//	{
+//		if (ch == '\n')
+//			continue;              //这里与scanf("%*c")作用相似。
+//		printf("Enter number of columns and number of rows: ");
+//		//从这里开始修改
+//		if (scanf("%d %d", &col, &row) != 2)
+//		{
+//			s = 1;
+//		}
+//		while(s==1)
+//		{
+//			scanf("%*c");
+//			printf("Please enter two numbers:");
+//			if (scanf("%d %d", &col, &row) != 2)
+//			{
+//				continue;
+//			}
+//			s = 0;
+//		}
+//		//到这里结束
+//		chLineRow(ch, col, row);
+//		printf("\nEnter next character (# to quit): ");
+//	}
+//	printf("Bye!\n");
+//
+//	return 0;
+//}
+//
+//// start rows and cols at 0
+//void chLineRow(char ch, int c, int r)
+//{
+//	int col, row;
+//	for (row = 0; row < r; row++)
+//	{
+//		for (col = 0; col < c; col++)
+//			putchar(ch);
+//		putchar('\n');
+//	}
+//	return;
+//}
+
+
+/* Programming Exercise 9-4 */
+//
+//#include <stdio.h>
+//
+//double H_mean(double x, double y);
+//
+//int main(void)
+//{
+//	double x, y,k;
+//
+//	printf("Please enter two numbers:");
+//	scanf("%lf %lf", &x, &y);
+//	k = H_mean(x, y);
+//	printf("x&y=%lf", k);     //x&y表示调和平均数
+//
+//	return 0;
+//}
+//
+//double H_mean(double x, double y)
+//{
+//	double a, b;
+//
+//	if (x == 0 || y == 0)
+//	{
+//		return 0;
+//	}
+//	a = (1 / x + 1 / y) / 2;
+//	b = 1 / a;
+//
+//	return b;
+//}
+
+
+/* Programming Exercise 9-5 */
+//
+//#include <stdio.h>
+//
+//void larger_of(double* p1, double* p2);
+//
+//int main(void)
+//{
+//	double x, y;
+//
+//	printf("Enter two numbers (q to quit): ");
+//	while (scanf("%lf %lf", &x, &y) == 2)
+//	{
+//		larger_of(&x, &y);
+//		printf("The modified values are %f and %f.\n", x, y);
+//		printf("Next two values (q to quit): ");
+//	}
+//	printf("Bye!\n");
+//
+//	return 0;
+//}
+//
+//void larger_of(double* p1, double* p2)
+//{
+//	if (*p1 > *p2)
+//		*p2 = *p1;
+//	else
+//		*p1 = *p2;
+//}
+
+
+/* Programming Exercise 9-6 */
+//#include <stdio.h>
+//
+//void Row_size(double * p1, double * p2,double * p3);
+//
+//int main(void)
+//{
+//	double x, y,z;
+//
+//	printf("Enter two numbers (q to quit): ");
+//	while (scanf("%lf %lf %lf", &x, &y, &z) == 3)
+//	{
+//		Row_size(&x, &y, &z);
+//		printf("The row_size values are %lf %lf %lf.\n", x, y, z);
+//		printf("Next three values (q to quit): ");
+//	}
+//	printf("Bye!\n");
+//
+//	return 0;
+//}
+//
+//void Row_size(double * p1, double * p2, double * p3)
+//{
+//	double arry[3] = { 0 };
+//	int i, j;
+//	double temp = 0;
+//
+//	arry[0] = *p1;
+//	arry[1] = *p2;
+//	arry[2] = *p3;
+//	for (i = 0; i < 2; i++)
+//	{
+//		for (j = i + 1; j < 3; j++)
+//		{
+//			if (arry[i] > arry[j])
+//			{
+//				temp = arry[i];
+//				arry[i] = arry[j];
+//				arry[j] = temp;
+//			}
+//		}
+//	}
+//	*p1 = arry[0];
+//	*p2 = arry[1];
+//	*p3 = arry[2];
+//}
+
+
+/* Programming Exercise 9-7 */
+//#include <stdio.h>
+//
+//void get_char_pos(void);
+//
+//int position(char ch);
+//
+//int main(void) 
+//{
+//    get_char_pos();
+//
+//    return 0;
+//}
+//
+//void get_char_pos(void)
+//{
+//    char ch;
+//
+//    printf("Enter the chars(ended by EOF ,not enter):");
+//    while((ch = getchar()) != EOF)
+//    {
+//     
+//        if (ch == '\n')
+//        {
+//            continue;
+//        }
+//       if(position(ch) != -1)
+//        {
+//            printf("The char %c position in alphabet is %d.\n",ch,position(ch));
+//        }
+//       else
+//        {
+//            printf("%c is not a alphabet.\n", ch);
+//        }
+//    }
+//}
+//
+//int position(char ch)
+//{
+//    if(ch >='A' && ch <='Z')
+//
+//        return (ch -'A' + 1);
+//
+//    else if(ch >='a' && ch <='z')
+//
+//        return (ch -'a' + 1);
+//    else 
+//
+//        return -1;
+//}
+
+
+/* Programming Exercise 9-8 */
+//
+//#include <stdio.h>
+//
+//double power(double a, int b); /* ANSI prototype */
+//
+//int main(void)
+//{
+//	double x, xpow;
+//	int n;
+//	printf("Enter a number and the integer power to which\n");
+//	printf("the number will be raised. Enter q to quit.\n");
+//	while (scanf("%lf %d", &x, &n) == 2)
+//	{
+//		xpow = power(x, n); /* function call */
+//		printf("%.3g to the power %d is %.5g\n", x, n, xpow);
+//		printf("Enter next pair of numbers or q to quit.\n");
+//	}
+//	printf("Hope you enjoyed this power trip -- bye!\n");
+//	return 0;
+//}
+//double power(double a, int b) /* function definition */
+//{
+//	double pow = 1;
+//	int i;
+//
+//	if (b == 0)
+//	{
+//		if (a == 0)
+//			printf("0 to the 0 undefined; using 1 as the value\n");
+//		pow = 1.0;
+//	}
+//	else if (a == 0)
+//		pow = 0.0;
+//	else if (b > 0)
+//	{
+//		for (i = 1; i <= b; i++)
+//			pow *= a;
+//	}
+//	else if (b < 0)
+//	{
+//		pow = 1.0 / power(a, -b);
+//	}
+//	return pow; /* return the value of pow */
+//}
+
+
+/* Programming Exercise 9-9 */
+//
+//#include <stdio.h>
+//
+//double power(double n, int p);
+//
+//int main(void) 
+//{
+//    double x, xpow;
+//    int exp;
+//
+//    printf("Enter a number and the integer power to which \n");
+//    printf("the number will be raised. Enter q to quit.\n");
+//    while(scanf("%lf %d",&x,&exp) == 2)
+//    {
+//        xpow = power(x,exp);
+//        printf("%.3g to the power %d is %.5g\n",x,exp,xpow);
+//        printf("Enter the next pair of numbers or q to quit.\n");
+//    }
+//    printf("Hope you enjoy this power trip -- bye!\b");
+//
+//    return 0;
+//}
+//
+//double power(double n, int p)
+//{
+//    double pow = 1;
+//    int i;
+//    if(n == 0 && p ==0)
+//    {
+//        printf("The %g to the power %c is not define, return 1!\n",n , p);
+//        return 1;
+//    }
+//    if (n == 0)
+//    {
+//        return 0;
+//    }
+//    if (p == 0)
+//    {
+//        return 1;
+//    }
+//    if (p > 0) 
+//    {
+//        return n * power(n, p - 1);
+//    }
+//    else
+//    {
+//        return power(n,p+1)/n;
+//    }
+//}
+
+
+/* Programming Exercise 9-10 */
+//
+//(1) -- 第一种方法可以测试任何进制
+//#include <stdio.h>
+//
+//void to_base_n(unsigned long n, unsigned int y);
+//
+//int main(void)
+//{
+//    unsigned long number;
+//    unsigned int y;
+//
+//    printf("Enter an integer ('q q' to quit):\n");
+//    while (scanf("%lu %d", &number,&y) == 2)
+//    {
+//        printf("Binary equivalent: ");
+//        to_base_n(number,y);
+//        putchar('\n');
+//        printf("Enter an integer (q to quit):\n");
+//    }
+//    printf("Done.\n");
+//
+//    return 0;
+//}
+//
+//void to_base_n(unsigned long n, unsigned int y)   /* recursive function */
+//{
+//    int r;
+//
+//    r = n % y;
+//    if (n >= y)
+//        to_base_n(n / y,y);
+//    putchar('0'+r);
+//
+//    return;
+//}
+
+
+//(2)
+//#include <stdio.h>
+//
+//void to_base_n(int x, int base);
+//
+//int main(void)
+//{
+//	int number;
+//	int b;
+//	int count;
+//
+//	printf("Enter an integer (q to quit):\n");
+//	while (scanf("%d", &number) == 1)
+//	{
+//		printf("Enter number base (2-10): ");
+//		while ((count = scanf("%d", &b)) == 1 && (b < 2 || b > 10))
+//		{
+//			printf("base should be in the range 2-10: ");
+//		}
+//	/*	if (count != 1)
+//			break;*/
+//		printf("Base %d equivalent: ", b);
+//		to_base_n(number, b);
+//		putchar('\n');
+//		printf("Enter an integer (q to quit):\n");
+//	}
+//	printf("Done.\n");
+//	return 0;
+//}
+//void to_base_n(int x, int base) /* recursive function */
+//{
+//	int r;
+//	r = x % base;
+//	if (x >= base)
+//		to_base_n(x / base, base);
+//	putchar('0' + r);
+//	return;
+//}
+
+
+/* Programming Exercise 9-11 */
+//
+//#include <stdio.h>
+//
+//void Fibonacci(int n);
+//
+//int main(void) 
+//{
+//    int n;
+//
+//    printf("Enter the number of Fibonacci (q to quit):");
+//    while(scanf("%d",&n) == 1)
+//    {
+//        if(n >= 2)
+//        {
+//            Fibonacci(n);
+//            printf("Enter the number of Fibonacci (q to quit):");
+//        }
+//    }
+//    return 0;
+//}
+//
+//void Fibonacci(int n)
+//{
+//    unsigned long f1,f2,temp;
+//    f1 = 1;
+//    f2 = 1;
+//    for(int i = 0 ;i < n; i++)
+//    {
+//        printf("%lu ",f1);
+//        temp = f1+f2;
+//        f1 = f2;
+//        f2 = temp;
+//    }
+//    printf("\n");
 //}
