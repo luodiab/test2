@@ -307,3 +307,374 @@
 //
 //    return 0;
 //}
+
+
+//程序清单10.13 -- ptr_ops.c -- pointer operations
+//
+//#include <stdio.h>
+//
+//int main(void)
+//{
+//    int urn[5] = { 100,200,300,400,500 };
+//    int* ptr1, * ptr2, * ptr3;
+//
+//    ptr1 = urn;         // assign an address to a pointer
+//    ptr2 = &urn[2];     // ditto
+//    // dereference a pointer and take
+//    // the address of a pointer
+//    printf("pointer value, dereferenced pointer, pointer address:\n");
+//    printf("ptr1 = %p, *ptr1 =%d, &ptr1 = %p\n",
+//        ptr1, *ptr1, &ptr1);
+//
+//    // pointer addition
+//    ptr3 = ptr1 + 4;
+//    printf("\nadding an int to a pointer:\n");
+//    printf("ptr1 + 4 = %p, *(ptr4 + 3) = %d\n",
+//        ptr1 + 4, *(ptr1 + 3));
+//    ptr1++;            // increment a pointer
+//    printf("\nvalues after ptr1++:\n");
+//    printf("ptr1 = %p, *ptr1 =%d, &ptr1 = %p\n",
+//        ptr1, *ptr1, &ptr1);
+//    ptr2--;            // decrement a pointer
+//    printf("\nvalues after --ptr2:\n");
+//    printf("ptr2 = %p, *ptr2 = %d, &ptr2 = %p\n",
+//        ptr2, *ptr2, &ptr2);
+//    --ptr1;            // restore to original value
+//    ++ptr2;            // restore to original value
+//    printf("\nPointers reset to original values:\n");
+//    printf("ptr1 = %p, ptr2 = %p\n", ptr1, ptr2);
+//    // subtract one pointer from another
+//    printf("\nsubtracting one pointer from another:\n");
+//    printf("ptr2 = %p, ptr1 = %p, ptr2 - ptr1 = %td\n",
+//        ptr2, ptr1, ptr2 - ptr1);
+//    // subtract an integer from a pointer
+//    printf("\nsubtracting an int from a pointer:\n");
+//    printf("ptr3 = %p, ptr3 - 2 = %p\n",
+//        ptr3, ptr3 - 2);
+//
+//    return 0;
+//}
+
+
+/*程序清单10.14 -- arf.c -- array functions */
+//
+//#include <stdio.h>
+//#define SIZE 5
+//
+//void show_array(const double ar[], int n);
+//
+//void mult_array(double ar[], int n, double mult);
+//
+//int main(void)
+//{
+//    double dip[SIZE] = { 20.0, 17.66, 8.2, 15.3, 22.22 };
+//
+//    printf("The original dip array:\n");
+//    show_array(dip, SIZE);
+//    mult_array(dip, SIZE, 2.5);
+//    printf("The dip array after calling mult_array():\n");
+//    show_array(dip, SIZE);
+//
+//    return 0;
+//}
+//
+///* displays array contents */
+//void show_array(const double ar[], int n)
+//{
+//    int i;
+//
+//    for (i = 0; i < n; i++)
+//        printf("%8.3f ", ar[i]);
+//    putchar('\n');
+//}
+//
+///* multiplies each array member by the same multiplier */
+//void mult_array(double ar[], int n, double mult)
+//{
+//    int i;
+//
+//    for (i = 0; i < n; i++)
+//        ar[i] *= mult;
+//}
+
+
+/*程序清单10.15 -- zippo1.c --  zippo info */
+//
+//#include <stdio.h>
+//
+//int main(void)
+//{
+//    int zippo[4][2] = { {2,4}, {6,8}, {1,3}, {5, 7} };
+//
+//    printf("   zippo = %p,    zippo + 1 = %p\n",
+//        zippo, zippo + 1);
+//    printf("zippo[0] = %p, zippo[0] + 1 = %p\n",
+//        zippo[0], zippo[0] + 1);
+//    printf("  *zippo = %p,   *zippo + 1 = %p\n",
+//        *zippo, *zippo + 1);
+//    printf("zippo[0][0] = %d\n", zippo[0][0]);
+//    printf("  *zippo[0] = %d\n", *zippo[0]);
+//    printf("    **zippo = %d\n", **zippo);
+//    printf("      zippo[2][1] = %d\n", zippo[2][1]);
+//    printf("*(*(zippo+2) + 1) = %d\n", *(*(zippo + 2) + 1));
+//
+//    return 0;
+//}
+
+
+/*程序清单10.16 -- zippo2.c --  zippo info via a pointer variable */
+//
+//#include <stdio.h>
+//
+//int main(void)
+//{
+//    int zippo[4][2] = { {2,4}, {6,8}, {1,3}, {5, 7} };
+//    int(*pz)[2];
+//    pz = zippo;
+//
+//    printf("   pz = %p,    pz + 1 = %p\n",
+//        pz, pz + 1);
+//    printf("pz[0] = %p, pz[0] + 1 = %p\n",
+//        pz[0], pz[0] + 1);
+//    printf("  *pz = %p,   *pz + 1 = %p\n",
+//        *pz, *pz + 1);
+//    printf("pz[0][0] = %d\n", pz[0][0]);
+//    printf("  *pz[0] = %d\n", *pz[0]);
+//    printf("    **pz = %d\n", **pz);
+//    printf("      pz[2][1] = %d\n", pz[2][1]);
+//    printf("*(*(pz+2) + 1) = %d\n", *(*(pz + 2) + 1));
+//
+//    return 0;
+//}
+
+
+/*程序清单10.17 -- array2d.c -- functions for 2d arrays*/
+//
+//#include <stdio.h>
+//#define ROWS 3
+//#define COLS 4
+//
+//void sum_rows(int ar[][COLS], int rows);
+//
+//void sum_cols(int [][COLS], int );    // ok to omit names
+//
+//int sum2d(int (*ar)[COLS], int rows); // another syntax
+//
+//int main(void)
+//{
+//    int junk[ROWS][COLS] = 
+//    {
+//        {2,4,6,8},
+//        {3,5,7,9},
+//        {12,10,8,6}
+//    };
+//    
+//    sum_rows(junk, ROWS);
+//    sum_cols(junk, ROWS);
+//    printf("Sum of all elements = %d\n", sum2d(junk, ROWS));
+//    
+//    return 0;
+//}
+//
+//void sum_rows(int ar[][COLS], int rows)
+//{
+//    int r;
+//    int c;
+//    int tot;
+//    
+//    for (r = 0; r < rows; r++)
+//    {
+//        tot = 0;
+//        for (c = 0; c < COLS; c++)
+//            tot += ar[r][c];
+//        printf("row %d: sum = %d\n", r, tot);
+//    }
+//}
+//
+//void sum_cols(int ar[][COLS], int rows)
+//{
+//    int r;
+//    int c;
+//    int tot;
+//    
+//    for (c = 0; c < COLS; c++)
+//    {
+//        tot = 0;
+//        for (r = 0; r < rows; r++)
+//            tot += ar[r][c];
+//        printf("col %d: sum = %d\n", c, tot);
+//    }
+//}
+//
+//int sum2d(int ar[][COLS], int rows)
+//{
+//    int r;
+//    int c;
+//    int tot = 0;
+//    
+//    for (r = 0; r < rows; r++)
+//        for (c = 0; c < COLS; c++)
+//            tot += ar[r][c];
+//    
+//    return tot;
+//}
+
+
+/*程序清单10.18 -- vararr2d.c -- functions using VLAs -- 注意：vs2019不支持变长数组特性既该代码在vs中不能运行*/
+//
+//#include <stdio.h>
+//#define ROWS 3
+//#define COLS 4
+//
+//int sum2d(int rows, int cols, int ar[rows][cols]);
+//
+//int main(void)
+//{
+//    int i, j;
+//    int rs = 3;
+//    int cs = 10;
+//    int junk[ROWS][COLS] = 
+//    {
+//        {2,4,6,8},
+//        {3,5,7,9},
+//        {12,10,8,6}
+//    };
+//
+//    int morejunk[ROWS - 1][COLS + 2] = {
+//        {20,30,40,50,60,70},
+//        {5,6,7,8,9,10}
+//    };
+//
+//    int varr[rs][cs];  // VLA
+//
+//    for (i = 0; i < rs; i++)
+//        for (j = 0; j < cs; j++)
+//            varr[i][j] = i * j + j;
+//
+//    printf("3x5 array\n");
+//    printf("Sum of all elements = %d\n",
+//        sum2d(ROWS, COLS, junk));
+//
+//    printf("2x6 array\n");
+//    printf("Sum of all elements = %d\n",
+//        sum2d(ROWS - 1, COLS + 2, morejunk));
+//
+//    printf("3x10 VLA\n");
+//    printf("Sum of all elements = %d\n",
+//        sum2d(rs, cs, varr));
+//
+//    return 0;
+//}
+//
+//// function with a VLA parameter
+//int sum2d(int rows, int cols, int ar[rows][cols])
+//{
+//    int r;
+//    int c;
+//    int tot = 0;
+//
+//    for (r = 0; r < rows; r++)
+//        for (c = 0; c < cols; c++)
+//            tot += ar[r][c];
+//
+//    return tot;
+//}
+
+
+//(2) -- (2)版本经过修改可以运行，但其主要问题仍然是数组的维数必须为常量，在函数中定义不行，那为局部变量。
+//#include <stdio.h>
+//#define ROWS 3
+//#define COLS 4
+//
+//int sum2d(int rows, int cols, int * ar);
+//
+//int main(void)
+//{
+//    int i, j;
+//    int rs = 3;
+//    int cs = 10;
+//        int junk[ROWS][COLS] = 
+//        {
+//            {2,4,6,8},
+//            {3,5,7,9},
+//            {12,10,8,6}
+//        };
+//
+//    int morejunk[ROWS - 1][COLS + 2] = {
+//        {20,30,40,50,60,70},
+//        {5,6,7,8,9,10}
+//    };
+//
+//    int varr[3][10];  // VLA
+//
+//    for (i = 0; i < rs; i++)
+//        for (j = 0; j < cs; j++)
+//            varr[i][j] = i * j + j;
+//
+//    printf("3x5 array\n");
+//    printf("Sum of all elements = %d\n",
+//        sum2d(ROWS, COLS, junk));
+//
+//    printf("2x6 array\n");
+//    printf("Sum of all elements = %d\n",
+//        sum2d(ROWS - 1, COLS + 2, morejunk));
+//
+//    printf("3x10 VLA\n");
+//    printf("%d", sum2d(rs, cs, &varr[0][0]));
+//
+//    return 0;
+//}
+
+
+//程序清单10.18 -- flc.c -- funny-looking constants -- 本代码笔者增加了一行代码以验证某些疑惑
+//
+//#include <stdio.h>
+//#define COLS 4
+//
+//int sum2d(const int ar[][COLS], int rows);
+//
+//int sum(const int ar[], int n);
+//
+//int main(void)
+//{
+//    int total1, total2, total3;
+//    int* pt1;
+//    int(*pt2)[COLS];
+//
+//    pt1 = (int[2]){ 10, 20 };
+//    pt2 = (int[2][COLS]){ {1,2,3,-9}, {4,5,6,-8} };
+//
+//    total1 = sum(pt1, 2);
+//    total2 = sum2d(pt2, 2);
+//    total3 = sum((int[]) { 4, 4, 4, 5, 5, 5 }, 6);
+//    printf("total1 = %d\n", total1);
+//    printf("total2 = %d\n", total2);
+//    printf("total3 = %d\n", total3);
+//    printf("%d  %d  \n", *pt1, *(pt1 + 1));    //使用指针看是否可以表达这种复合字面量数组的值
+//
+//    return 0;
+//}
+//
+//int sum(const int ar[], int n)
+//{
+//    int i;
+//    int total = 0;
+//
+//    for (i = 0; i < n; i++)
+//        total += ar[i];
+//
+//    return total;
+//}
+//
+//int sum2d(const int ar[][COLS], int rows)
+//{
+//    int r;
+//    int c;
+//    int tot = 0;
+//
+//    for (r = 0; r < rows; r++)
+//        for (c = 0; c < COLS; c++)
+//            tot += ar[r][c];
+//
+//    return tot;
+//}
