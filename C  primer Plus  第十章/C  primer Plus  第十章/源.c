@@ -678,3 +678,604 @@
 //
 //    return tot;
 //}
+
+
+//编程练习 -- Chapter 10 Programming	Exercises
+//
+/* Programming Exercise 10-1 */
+//
+//#include <stdio.h>
+//#define MONTHS 12 // number of months in a year
+//#define YRS 5 // number of years of data
+//
+//int main(void)
+//{
+//    // initializing rainfall data for 2010 - 2014
+//    const float rain[YRS][MONTHS] = {
+//    {4.3,4.3,4.3,3.0,2.0,1.2,0.2,0.2,0.4,2.4,3.5,6.6},
+//    {8.5,8.2,1.2,1.6,2.4,0.0,5.2,0.9,0.3,0.9,1.4,7.3},
+//    {9.1,8.5,6.7,4.3,2.1,0.8,0.2,0.2,1.1,2.3,6.1,8.4},
+//    {7.2,9.9,8.4,3.3,1.2,0.8,0.4,0.0,0.6,1.7,4.3,6.2},
+//    {7.6,5.6,3.8,2.8,3.8,0.2,0.0,0.0,0.0,1.3,2.6,5.2}
+//    };
+//    int year, month;
+//    float subtot, total;
+//
+//    printf(" YEAR RAINFALL (inches)\n");
+//    for (year = 0, total = 0; year < YRS; year++)
+//    { /* for each year, sum rainfall for each month */
+//        for (month = 0, subtot = 0; month < MONTHS; month++)
+//            subtot += *(*(rain + year) + month);
+//        printf("%5d %15.1f\n", 2010 + year, subtot);
+//        total += subtot; /* total for all years */
+//    }
+//    printf("\nThe yearly average is %.1f inches.\n\n", total / YRS);
+//    printf("MONTHLY AVERAGES:\n\n");
+//    printf(" Jan  Feb  Mar  Apr  May  Jun  Jul  Aug  Sep  Oct ");
+//    printf(" Nov  Dec\n");
+//
+//    for (month = 0; month < MONTHS; month++)
+//    { /* for each month, sum rainfall over years */
+//        for (year = 0, subtot = 0; year < YRS; year++)
+//            subtot += *(*(rain + year) + month);
+//        printf("%4.1f ", subtot / YRS);
+//    }
+//    printf("\n");
+//    return 0;
+//}
+
+
+/* Programming Exercise 10-2 */
+//
+//#include <stdio.h>
+//
+//void copy_arr(double t[], double s[], int n);
+//
+//void copy_ptr(double* t, double* s, int n);
+//
+//void copy_ptrs(double* t, double* s_first, double* s_last);
+//
+//int main(void) 
+//{
+//    double source[5] = { 1.1, 2.2, 3.3, 4.4, 5.5 };
+//    double target1[5];
+//    double target2[5];
+//    double target3[5];
+//    copy_arr(target1, source, 5);
+//    copy_ptr(target2, source, 5);
+//    copy_ptrs(target3, source, source + 5);
+//    return 0;
+//}
+//
+//void copy_arr(double t[], double s[], int n)
+//{
+//    for (int i = 0; i < n; i++)
+//        t[i] = s[i];
+//
+//}
+//
+//void copy_ptr(double * t, double * s, int n) 
+//{
+//    for (int i = 0; i < n; i++)
+//        *(t + i) = *(s + i);
+//}
+//
+//void copy_ptrs(double * t, double * s_first, double * s_last) 
+//{
+//    for (int i = 0; (s_last - s_first) > i; i++)
+//
+//        *(t+i) = *(s_first+i);
+//
+//}
+
+
+/* Programming Exercise 10-3 */
+//
+//#include <stdio.h>
+//#define LEN 10 
+//
+//int max_arr(const int ar[], int n);
+//
+//void show_arr(const int ar[], int n);
+//
+//int main(void)
+//{
+//    int orig[LEN] = { 1,2,3,4,12,6,7,8,9,10 };
+//    int max;
+//    show_arr(orig, LEN);
+//    max = max_arr(orig, LEN);
+//    printf("%d = largest value\n", max);
+//
+//    return 0;
+//}
+//
+//int max_arr(const int ar[], int n)
+//{
+//    int i;
+//    int max = ar[0];
+//    /* don't use 0 as initial max value -- fails if all array values are neg */
+//
+//    for (i = 1; i < n; i++)
+//        if (max < ar[i])
+//            max = ar[i];
+//    return max;
+//}
+//
+//void show_arr(const int ar[], int n)
+//{
+//    int i;
+//
+//    for (i = 0; i < n; i++)
+//        printf("%d ", ar[i]);
+//    putchar('\n');
+//}
+
+
+/* Programming Exercise 10-4 */
+//
+//#include <stdio.h>
+//#define LEN 10 
+//
+//int max_arr(const double ar[], int n);
+//
+//void show_arr(const double ar[], int n);
+//
+//int main(void)
+//{
+//    double orig[LEN] = { 1,2,3,4,12,6,7,8,9,10 };
+//    int max;
+//    show_arr(orig, LEN);
+//    max = max_arr(orig, LEN);
+//    printf("%d = largest\n", max);
+//
+//    return 0;
+//}
+//
+//int max_arr(const double ar[], int n)
+//{
+//    int i;
+//    int max1 = 0;
+//    double max = ar[0];
+//    /* don't use 0 as initial max value -- fails if all array values are neg */
+//
+//    for (i = 1; i < n; i++)
+//    {
+//        if (max < ar[i])
+//        {
+//            max = ar[i];
+//            max1 = i;
+//        }
+//    }
+//
+//    if (max == ar[0])
+//        max1 = 0;
+//    return max1;
+//}
+//
+//void show_arr(const double ar[], int n)
+//{
+//    int i;
+//
+//    for (i = 0; i < n; i++)
+//        printf("%f ", ar[i]);
+//    putchar('\n');
+//}
+
+
+/* Programming Exercise 10-5 */
+//
+//#include <stdio.h>
+//#define LEN 10 
+//
+//double difference_arr(const double ar[], int n);
+//
+//void show_arr(const double ar[], int n);
+//
+//int main(void)
+//{
+//    double orig[LEN] = { 1,2,3,4,12,6,7,8,9,10 };
+//    double difference=0;
+//
+//    show_arr(orig, LEN);
+//    difference = difference_arr(orig, LEN);
+//    printf("%f = largest-minimum\n", difference);
+//
+//    return 0;
+//}
+//
+//double difference_arr(const double ar[], int n)
+//{
+//    int i;
+//    double max = ar[0];
+//    double min = ar[0];
+//    double difference = 0.0;
+//    /* don't use 0 as initial max value -- fails if all array values are neg */
+//
+//    for (i = 1; i < n; i++)
+//    {
+//        if (max < ar[i])
+//        {
+//            max = ar[i];
+//        }
+//    }
+//
+//    for (i = 1; i < n; i++)
+//    {
+//        if (min > ar[i])
+//        {
+//            min = ar[i];
+//        }
+//    }
+//    difference = (max - min);
+//
+//    return difference;
+//}
+//
+//void show_arr(const double ar[], int n)
+//{
+//    int i;
+//
+//    for (i = 0; i < n; i++)
+//        printf("%f ", ar[i]);
+//    putchar('\n');
+//}
+
+
+/* Programming Exercise 10-6 */
+//
+//#include <stdio.h>
+//#define LEN 10 
+//
+//void arr( double ar[], int n);
+//
+//void show_arr(const double ar[], int n);
+//
+//int main(void)
+//{
+//    double orig[LEN] = { 1,2,3,4,12,6,7,8,9,10 };
+//
+//    printf("The top:\n");
+//    show_arr(orig, LEN);
+//    arr(orig, LEN);
+//    printf("After arrangement:\n");
+//    show_arr(orig, LEN);
+//
+//    return 0;
+//}
+//
+//void arr( double ar[], int n)
+//{
+//    int i,k;
+//    double temp = 0.0;
+//    /* don't use 0 as initial max value -- fails if all array values are neg */
+//
+//    for (i = 0,k=n-1; i < n/2-1; i++,k--)
+//    {
+//        temp = ar[i];
+//        ar[i] = ar[k];
+//        ar[k] = temp;
+//    }
+//
+//
+//    return 0;
+//}
+//
+//void show_arr(const double ar[], int n)
+//{
+//    int i;
+//
+//    for (i = 0; i < n; i++)
+//        printf("%f ", ar[i]);
+//    putchar('\n');
+//}
+
+
+/* Programming Exercise 10-7 */
+//
+//#include <stdio.h>
+//#define ROWS 12
+//#define COLS 5
+//
+//void copy_arr(double t[], double s[], int n);
+//
+//void copy_ptr(double* t, double* s, int n);
+//
+//void copy_ptrs(double* t, double* s_first, double* s_last);
+//
+//void copy_2d_ptr(double(*t)[ROWS], double(*s)[ROWS], int n);
+//
+//int main(void) 
+//{
+//    double target[COLS][ROWS], source[COLS][ROWS] = 
+//    {
+//            {4.3, 4.3, 4.3, 3.0, 2.0, 1.2, 0.2, 0.2, 0.4, 2.4, 3.5, 6.6},
+//            {8.5, 8.2, 1.2, 1.6, 2.4, 0.0, 5.2, 0.9, 0.3, 0.9, 1.4, 7.3},
+//            {9.1, 8.5, 6.7, 4.3, 2.1, 0.8, 0.2, 0.2, 1.1, 2.3, 6.1, 8.4},
+//            {7.2, 9.9, 8.4, 3.3, 1.2, 0.8, 0.4, 0.0, 0.6, 1.7, 4.3, 6.2},
+//            {7.6, 5.6, 3.8, 2.8, 3.8, 0.2, 0.0, 0.0, 0.0, 1.3, 2.6, 5.2},
+//    };
+//
+//    copy_2d_ptr(target, source, COLS);
+//
+//    for (int i = 0; i < COLS; i++) 
+//    {
+//        for (int j = 0; j < ROWS; j++)
+//            printf("%5.2f", target[i][j]);
+//        printf("\n");
+//    }
+//    return 0;
+//}
+//
+//void copy_arr(double t[], double s[], int n) 
+//{
+//    for (int i = 0; i < n; i++)
+//    {
+//        t[i] = s[i];
+//    }
+//}
+//void copy_2d_ptr(double(*t)[ROWS], double(*s)[ROWS], int n)
+//{
+//    for (int i = 0; i < n; i++)
+//    {
+//        copy_ptr(*(t + i), *(s + i), ROWS);
+//    }
+//}
+//void copy_ptr(double * t, double * s, int n) 
+//{
+//    for (int i = 0; i < n; i++)
+//    {
+//        *(t + i) = *(s + i);
+//        printf("%lf  ", t[i]);
+//        if (i==n-1)
+//        {
+//            printf("\n");
+//        }
+//    }
+//}
+//void copy_ptrs(double* t, double* s_first, double* s_last) 
+//{
+//    for (int i = 0; (s_last - s_first) > i; i++)
+//        //for(int i = 0; (s_last - s_first) > 0 ;i++, s_first++)
+//        *(t + i) = *(s_first + i);
+//}
+
+
+/* Programming Exercise 10-8 */
+//
+//#include <stdio.h>
+//#include <stdlib.h>
+//
+//void copy_ptr(double* t, double* s, int n);
+//
+//int main(void)
+//{
+//    double src[] = { 1, 2, 3, 4, 5, 6, 7 };
+//    double targ[3];
+//    copy_ptr(targ, src + 2, 3);
+//
+//    printf("Now Show the src array:\n");
+//    for (int i = 0 ;i < 7; i++)
+//        printf("%.0lf ", src[i]);
+//
+//    printf("\nNow Show the dest array:\n");
+//    for (int i = 0; i < 3; ++i)
+//        printf("%.0lf ", targ[i]);
+//    return 0;
+//}
+//void copy_ptr(double *t, double *s, int n)
+//{
+//    for(int i = 0 ;i < n ;i++)
+//        *(t+i) = *(s+i);
+//}
+
+
+/* Programming Exercise 10-9 */    //注意，若编译器不支持变长数组，则该代码不能运行
+//#include <stdio.h>
+
+//void copy_array(int n, int m, double target[n][m], const double source[n][m]);
+
+//void show_array(int n, int m, const double array[n][m]);
+//
+//int main(void) 
+//{
+//    int n = 3;
+//    int m = 5;
+//    double target[n][m], source[][5] =
+//    {
+//            {0.2, 0.4, 2.4, 3.5, 6.6},
+//            {8.5, 8.2, 1.2, 1.6, 2.4},
+//            {9.1, 8.5, 2.3, 6.1, 8.4},
+//    };
+//    copy_array(n, m, target, source);
+//    show_array(n, m, target);
+//    return 0;
+//}
+//
+//void copy_array(int n, int m, double target[n][m], const double source[n][m])
+//{
+//    for (int i = 0; i < n; i++)
+//        for (int j = 0; j < m; j++)
+//            target[i][j] = source[i][j];
+//}
+//
+//void show_array(int n, int m, const double array[n][m])
+//{
+//    for (int i = 0; i < n; i++)
+//    {
+//        for (int j = 0; j < m; j++)
+//            printf("%g ", array[i][j]);
+//        printf("\n");
+//    }
+//}
+
+
+/* Programming Exercise 10-10 */
+//
+//#include <stdio.h>
+//#define INDEX 4
+//
+//void add_array(int n, int t[INDEX], const int s1[INDEX], const int s2[INDEX]);
+//
+//int main(void) 
+//{
+//    int sum[INDEX], s1[INDEX] = { 2,4,5,8 }, s2[INDEX] = { 1,0,4,6 };
+//    add_array(INDEX, sum, s1, s2);
+//    for (int i = 0; i < INDEX; i++)
+//        printf("%d ", sum[i]);
+//    return 0;
+//}
+//
+//void add_array(int n, int t[INDEX], const int s1[INDEX], const int s2[INDEX])
+//{
+//    for (int i = 0; i < n; i++)
+//        t[i] = s1[i] + s2[i];
+//}
+
+
+/* Programming Exercise 10-11 */
+//
+//#include <stdio.h>
+//#define ROWS 3
+//#define COLS 5 
+//
+//void times2(int ar[][COLS], int r);
+//
+//void showarr2(int ar[][COLS], int r);
+//
+//int main(void)
+//{
+//    int stuff[ROWS][COLS] = 
+//    { 
+//        {1,2,3,4,5},
+//        {6,7,8,-2,10},
+//        {11,12,13,14,15}
+//    };
+//    showarr2(stuff, ROWS);
+//    putchar('\n');
+//    times2(stuff, ROWS);
+//    showarr2(stuff, ROWS);
+//
+//    return 0;
+//}
+//
+//void times2(int ar[][COLS], int r)
+//{
+//    int row, col;
+//
+//    for (row = 0; row < r; row++)
+//        for (col = 0; col < COLS; col++)
+//            ar[row][col] *= 2;
+//}
+//
+//void showarr2(int ar[][COLS], int r)
+//{
+//    int row, col;
+//
+//    for (row = 0; row < r; row++)
+//    {
+//        for (col = 0; col < COLS; col++)
+//            printf("%3d ", ar[row][col]);
+//        putchar('\n');
+//    }
+//}
+
+
+/* Programming Exercise 10-13 */
+//
+//#include <stdio.h>
+//#define ROWS 3
+//#define COLS 5 
+//
+//void store(double ar[], int n);
+//
+//double average2d(int rows, int cols, double ar[ROWS][COLS]);
+//
+//double max2d(int rows, int cols, double ar[ROWS][COLS]);
+//
+//void showarr2(int rows, int cols, double ar[ROWS][COLS]);
+//
+//double average(const double ar[], int n);
+//
+//int main(void)
+//{
+//    double stuff[ROWS][COLS];
+//    int row;
+//
+//    for (row = 0; row < ROWS; row++)
+//    {
+//        printf("Enter %d numbers for row %d\n", COLS, row + 1);
+//        store(stuff[row], COLS);
+//    }
+//
+//    printf("array contents:\n");
+//    showarr2(ROWS, COLS, stuff);
+//
+//    for (row = 0; row < ROWS; row++)
+//        printf("average value of row %d = %g\n", row + 1, average(stuff[row], COLS));
+//    printf("average value of all rows = %g\n", average2d(ROWS, COLS, stuff));
+//    printf("largest value = %g\n", max2d(ROWS, COLS, stuff));
+//    printf("Bye!\n");
+//
+//    return 0;
+//}
+//
+//void store(double ar[], int n)
+//{
+//    int i;
+//    for (i = 0; i < n; i++)
+//    {
+//        printf("Enter value #%d: ", i + 1);
+//        scanf("%lf", &ar[i]);
+//    }
+//}
+//
+//double average2d(int rows, int cols, double ar[ROWS][COLS])
+//{
+//    int r, c;
+//    double sum = 0.0;
+//
+//    for (r = 0; r < rows; r++)
+//        for (c = 0; c < cols; c++)
+//            sum += ar[r][c];
+//    if (rows * cols > 0)
+//        return sum / (rows * cols);
+//    else
+//        return 0.0;
+//}
+//
+//double max2d(int rows, int cols, double ar[ROWS][COLS])
+//{
+//    int r, c;
+//    double max = ar[0][0];
+//
+//    for (r = 0; r < rows; r++)
+//        for (c = 0; c < cols; c++)
+//            if (max < ar[r][c])
+//                max = ar[r][c];
+//    return max;
+//}
+//
+//void showarr2(int rows, int cols, double ar[ROWS][COLS])
+//{
+//    int row, col;
+//
+//    for (row = 0; row < rows; row++)
+//    {
+//        for (col = 0; col < cols; col++)
+//            printf("%3g ", ar[row][col]);
+//        putchar('\n');
+//    }
+//}
+//
+//double average(const double ar[], int n)
+//{
+//    int i;
+//    double sum = 0.0;
+//
+//    for (i = 0; i < n; i++)
+//        sum += ar[i];
+//    if (n > 0)
+//        return sum / n;
+//    else
+//        return 0.0;
+//}
