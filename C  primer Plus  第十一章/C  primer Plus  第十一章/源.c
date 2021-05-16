@@ -1021,3 +1021,1287 @@ strcat() »á½«²ÎÊý src ×Ö·û´®¸´ÖÆµ½²ÎÊý dest ËùÖ¸µÄ×Ö·û´®Î²²¿£»dest ×îºóµÄ½áÊø×Ö·
 //    }
 //    return ret_val;
 //}
+
+
+//Chapter	11 Programming	Exercises
+
+/* Programming Exercise 11-1 */
+//
+//#include <stdio.h>
+//
+//#define LEN 10
+//
+//char* getnchar(char* str, int n);
+//
+//int main(void)
+//{
+//    char input[LEN];
+//    char* check;
+//
+//    check = getnchar(input, LEN - 1);
+//    if (check == NULL)
+//        puts("Input failed.");
+//    else
+//        puts(input);
+//    puts("Done.\n");
+//
+//    return 0;
+//}
+//char* getnchar(char* str, int n)
+//{
+//    int i;
+//    int ch;
+//    for (i = 0; i < n; i++)
+//    {
+//        ch = getchar();
+//        if (ch != EOF)
+//            str[i] = ch;
+//        else
+//            break;
+//    }
+//    if (ch == EOF)
+//        return NULL;
+//    else
+//    {
+//        str[i] = '\0';
+//        return str;
+//    }
+//}
+
+
+/* Programming Exercise 11-2 */
+
+//(1)
+//#include <stdio.h>
+//
+//#define SIZE 40
+//
+//char* read_char(char* st, int n);
+//
+//int main(int argc, char* argv[]) 
+//{
+//    char test[SIZE];
+//    puts("Start to test function. Enter a string.");
+//    read_char(test, SIZE);
+//    puts("The string you input is:");
+//    puts(test);
+//
+//    return 0;
+//}
+//
+//char* read_char(char* st, int n) 
+//{
+//    int i = 0;
+//    do 
+//    {
+//        st[i] = getchar();
+//        if (st[i] == '\n' || st[i] == '\t' || st[i] == ' ')
+//            break;
+//
+//    } while (st[i] != EOF && ++i < n);
+//    st[i] = '\0';        /* ÈôÃ»ÓÐÕâ¸öÓï¾ä£¬Ôòµ±Êý×éÃ»ÓÐ´æ´¢ÂúÊ±£¬Êä³öµ½ÆÁÄ»Ê±,µ±´æ´¢µÄÄÚÈÝÊä³öÍêÊ±»áËæÒâÊä³öÄÚÈÝ¡£*/
+
+//    return st;
+//}
+
+//(2)
+//#include <stdio.h>
+//
+//#define LEN 40
+//
+//char* getnchar(char* str, int n);
+//
+//int main(void)
+//{
+//    char input[LEN];
+//    char* check;
+//
+//    check = getnchar(input, LEN - 1);
+//    if (check == NULL)
+//        puts("Input failed.");
+//    else
+//        puts(input);
+//    puts("Done.\n");
+//
+//    return 0;
+//}
+//char* getnchar(char* str, int n)
+//{
+//    int i;
+//    int ch;
+//    for (i = 0; i < n; i++)
+//    {
+//        ch = getchar();
+//        if (ch == '\n' || ch == '\t' || ch == ' ')
+//            break;
+//        else if (ch != EOF)
+//            str[i] = ch;
+//        else
+//            break;
+//    }
+//    if (ch == EOF)
+//        return NULL;
+//    else
+//    {
+//        str[i] = '\0';
+//        return str;
+//    }
+//}
+
+
+/* Programming Exercise 11-3 */
+//
+//#include <stdio.h>
+//#include <ctype.h>
+//
+//#define LEN 20
+//
+//char* getword(char* str);
+//
+//int main(void)
+//{
+//    char input[LEN];
+//
+//    while (getword(input) != NULL)
+//        puts(input);
+//    puts("Done.\n");
+//
+//    return 0;
+//}
+//
+//char* getword(char* str)
+//{
+//    int ch;
+//    char* orig = str;
+//
+//    while ((ch = getchar()) != EOF && !isspace(ch))
+//        *str++ = ch;
+//         *str = '\0';
+//    if (ch == EOF)
+//        return NULL;
+//    else
+//    {
+//        while (ch != '\n')
+//            ch = getchar();
+//        return orig;
+//    }
+//}
+
+
+/* Programming Exercise 11-4 */
+//
+//#include <stdio.h>
+//#include <ctype.h>
+//
+//#define LEN 20
+//
+//char* getword(char* str ,int n);
+//
+//int main(void)
+//{
+//    char input[LEN];
+//
+//    while (getword(input,9) != NULL)
+//        puts(input);
+//    puts("Done.\n");
+//
+//    return 0;
+//}
+//
+//char* getword(char* str ,int n)
+//{
+//    int ch,k=0;
+//    char* orig = str;
+//
+//    while ((ch = getchar()) != EOF && !isspace(ch))
+//    {
+//        *str++ = ch;
+//        k++;
+//        *str = '\0';
+//        if (k == 10)
+//        {
+//            printf("k=%d\n", k);
+//            break;
+//        }
+//    }
+//
+//    if (ch == EOF)
+//        return NULL;
+//    else                     
+//    {
+//        while (ch != '\n')               /* ½ÓÏÂÀ´µÄwhileÑ­»·ÊÇÉáÆúÊ£ÓàµÄ×Ö·û¡£*/
+//        {
+//            ch = getchar();
+//        }
+//        return orig;
+//    }
+//}
+
+
+/* Programming Exercise 11-5 */
+//
+//#include <stdio.h>
+//#define SIZE 80
+//char* string_char(char* st, char c);
+//
+//int main(int argc, char* argv[]) 
+//{
+//    char source[SIZE];
+//    char dest = ' ';
+//    char* position;
+//    printf("Enter a String: ");
+//    fgets(source, SIZE, stdin);
+//
+//    while (dest != EOF)      /*×¢Òâ£¬ÕâÀïµÄdestÎªÉÏÒ»¸ödestµÄÖµ£¬Òò´Ëµ±È¡µÃÐÂµÄdestÖµÊ±£¬ÓÃif (dest == EOF)Óï¾äÅÐ¶Ï¡£*/
+//    {
+//
+//        printf("Enter a char to find (EOF for Quit):");
+//        while ((dest = getchar()) == '\n') 
+//            continue;
+//        if (dest == EOF)
+//            break;
+//        if((position = string_char(source, dest))!=NULL)
+//           printf("Found the char %c in the %p\n",*position,position);
+//        else
+//           printf("Char %c not found. Try another?\n",dest);
+//
+//     }
+//    puts("Done!\n");
+//      return 0;
+//  }
+//  char* string_char(char* st, char c)
+//  {
+//     while(*st != '\0')
+//     {
+//
+//        if(*st == c)
+//           return st;
+//
+//        else
+//           st++;
+//
+//     }
+//     return NULL;
+//  }
+
+
+/* Programming Exercise 11-6 */
+//
+//#include <stdio.h>
+//#include <string.h>
+//
+//#define LEN 80
+//
+//_Bool is_within(const char* str, char c);
+//
+//char* s_gets(char* st, int n);
+//
+//int main(void)
+//{
+//    char input[LEN];
+//    char ch;
+//    int found;;
+//
+//    printf("Enter a string: ");
+//    while (s_gets(input, LEN) && input[0] != '\0')
+//    {
+//        printf("Enter a character: ");
+//        ch = getchar();
+//        while (getchar() != '\n')     /* ÉáÆúgetcharºóÃæµÄ×Ö·û¡£*/
+//            continue;
+//        found = is_within(input, ch);
+//        if (found == 0)
+//            printf("%c not found in string.\n", ch);
+//        else
+//            printf("%c found in string %s\n", ch, input);
+//        printf("Next string: ");
+//    }
+//    puts("Done.\n");
+//
+//    return 0;
+//}
+//
+//_Bool is_within(const char* str, char ch)
+//{
+//    while (*str != ch && *str != '\0')
+//        str++;
+//    return *str; /* = 0 if \0 reached, non-zero otherwise */
+//}
+//
+//char* s_gets(char* st, int n)
+//{
+//    char* ret_val;
+//    char* find;
+//
+//    ret_val = fgets(st, n, stdin);
+//    if (ret_val)
+//    {
+//        find = strchr(st, '\n'); // look for newline
+//        if (find) // if the address is not NULL,
+//            *find = '\0'; // place a null character there
+//        else
+//            while (getchar() != '\n')
+//                continue;
+//    }
+//    return ret_val;
+//}
+
+
+/* Programming Exercise 11-7 */
+//
+//#include <stdio.h>
+//#include <string.h>
+//
+//#define SIZE 80
+//
+//char* mystrncpy(char* dest, char* src, int n);
+//
+//int main(int argc, char* argv[]) 
+//{
+//    char destination[SIZE], source[SIZE];
+//    int i = 0;
+//    printf("Enter a String as s source (blank to quit.): ");
+//    fgets(source, SIZE, stdin);
+//    printf("Enter number of char you need to copy :");
+//    scanf("%d", &i);
+//   
+//    while (*source != '\n') 
+//    {
+//        mystrncpy(destination, source, i);
+//        printf("Done!\nNow the dest string is:");
+//        puts(destination);
+//        while (getchar() != '\n') 
+//            break;
+//
+//        printf("Another? Enter a String as s source(blank to quit.): ");
+//        fgets(source, SIZE, stdin);
+//        if (*source == '\n')
+//        {
+//            puts("Done!\n");
+//            break;
+//        }
+//        printf("Enter number of char you need to copy:");
+//        scanf("%d", &i);
+//    };
+//    return 0;
+//}
+//
+//char* mystrncpy(char* dest, char* src, int n) 
+//{
+//    int count = 0;
+//    while (*src != '\0' && count < n) 
+//    {
+//        *(dest + count++) = *src++;
+//    }
+//
+//    if (count < n) 
+//    {
+//        while (count < n)
+//            *(dest + count++) = '\0';
+//    }
+//    *(dest + count) = '\0';
+//    if (*dest == EOF)
+//    {
+//        return NULL;
+//    }
+//
+//    return dest;
+//}
+
+
+/* Programming Exercise 11-8 */
+//
+//(1)
+//#include <stdio.h>
+//#include <string.h>
+//
+//#define LEN 20
+//
+//char* string_in(const char* s1, const char* s2);
+//
+//int main(void)
+//{
+//    char orig[LEN] = "transportation";
+//    char* find;
+//
+//    printf("The contents of orig array are:");
+//    puts(orig);
+//    find = string_in(orig, "port");
+//    if (find)
+//    {
+//        printf("Had been found(port):");
+//        puts(find);
+//    }
+//    else
+//        puts("Not found");
+//    find = string_in(orig, "part");
+//    if (find)
+//        puts(find);
+//    else
+//        puts("Not found");
+//
+//    return 0;
+//}
+//
+//char* string_in(const char* s1, const char* s2)
+//{
+//    int l2 = strlen(s2);
+//    int tries; /* maximum number of comparisons */
+//    int nomatch = 1; /* set to 0 if match is found */
+//
+//    tries = strlen(s1) + 1 - l2;
+//    if (tries > 0)
+//        while ((nomatch = strncmp(s1, s2, l2)) && tries--)
+//            s1++;
+//    if (nomatch)
+//        return NULL;
+//    else
+//        return (char*)s1; /* cast const away */
+//}
+
+
+//(2)
+//#include <stdio.h>
+//#include <string.h>
+//
+//#define SIZE 80
+//
+//char* string_in(char* st, char* sub);
+//
+//int main(int argc, char* argv[]) 
+//{
+//    char main_string[SIZE], sub[SIZE];
+//    char* p = NULL;
+//    printf("Enter a String as main string (blank to quit.): ");
+//    fgets(main_string, SIZE, stdin);
+//    printf("Enter a sub string to find in main :");
+//    fgets(sub, SIZE, stdin);
+//    while (*main_string != '\n') 
+//    {
+//
+//        p = string_in(main_string, sub);
+//
+//        printf("Done!\nNow the position of sub string is:");
+//        printf("%p\n", p);
+//        printf("Another? Enter a String as main string (blank to quit.): ");
+//        fgets(main_string, SIZE, stdin);
+//        printf("Enter a sub string to find in main :");
+//        fgets(sub, SIZE, stdin);
+//    };
+//    return 0;
+//}
+//
+//char* string_in(char* st, char* sub) 
+//{
+//    int count = 0;
+//    int src_len = strlen(sub);
+//    while (*st != '\0' && count < src_len) 
+//    {
+//
+//        if (*(st + count) == *(sub + count)) 
+//        {
+//            count++;
+//        }
+//        else 
+//        {
+//            count = 0;
+//            st++;
+//        }
+//    }
+//    if(count == src_len) 
+//        return st;
+//    else 
+//        return NULL;
+//}
+
+
+/* Programming Exercise 11-9 */
+//
+//#include <stdio.h>
+//#include <string.h>
+//
+//#define SIZE 80
+//
+//char* invert_str(char* st, int n);
+//
+//int main(int argc, char* argv[])
+//{
+//    char test_string[SIZE];
+//    char* p = NULL;
+//    int k = 0;
+//
+//    printf("Enter a string (enter to quit.): ");
+//    fgets(test_string, SIZE, stdin);
+//    while (*test_string != '\n')
+//    {
+//        k = strlen(test_string)-1;
+//        p = invert_str(test_string, k);
+//        printf("Done!\nNow the invert string is :");
+//        printf("%s\n", test_string);             /*Ö´ÐÐÍê%sºó£¬ÏÂÒ»¸öprintf»áÓëÆäÓÐÒ»ÐÐ¿ÕÐÐ£¬ÒòÎªtest_string
+//                                                    ±¾Éí´æ´¢×ÅÒ»¸ö'\n'£¬ÔÙ¼ÓÉÏ%sºóµÄ'\n'¡£*/
+//        printf("Another? Enter a string (enter to quit.):");
+//        fgets(test_string, SIZE, stdin);
+//    };
+//}
+//
+//char* invert_str(char* st, int n)
+//{
+//
+//    int length = n;
+//
+//    char invert[SIZE] = { 0 };
+//
+//    for (int i = 0; i < length; i++)
+//        *(invert + i) = *(st + length - 1 - i);
+//
+//    for (int i = 0; i < length; i++)
+//        *(st + i) = *(invert + i);
+//
+//    return st;
+//}
+
+
+/* Programming Exercise 11-10 */
+//
+//(1) -- drop_spaceº¯Êý·µ»ØµÄÊÇÔ­À´µÄorigº¯Êý£¬Ö»ÊÇ½«ÆäÄÚµÄ¿Õ¸ñÉ¾³ý¡£
+//#include <stdio.h>
+//#include <string.h> // for strchr();
+//#define LEN 81
+//int drop_space(char* s);
+//char* s_gets(char* st, int n);
+//int main(void)
+//{
+//    char orig[LEN];
+//
+//    puts("Enter a string of 80 characters or less:");
+//    while (s_gets(orig, LEN) && orig[0] != '\0')
+//    {
+//        drop_space(orig);
+//        puts(orig);
+//        puts("Enter next string (or just Enter to quit):");
+//    }
+//    puts("Bye!");
+//    return 0;
+//}
+//int drop_space(char* s)
+//{
+//    char* pos;
+//    while (*s) /* or while (*s != '\0') */
+//    {
+//        if (*s == ' ')
+//        {
+//            pos = s;
+//            do
+//            {
+//                *pos = *(pos + 1);
+//                pos++;
+//            } while (*pos);
+//        }
+//        else
+//            s++;
+//    }
+//
+//}
+//
+//char* s_gets(char* st, int n)
+//{
+//    char* ret_val;
+//    char* find;
+//
+//    ret_val = fgets(st, n, stdin);
+//    if (ret_val)
+//    {
+//        find = strchr(st, '\n'); // look for newline
+//        if (find) // if the address is not NULL,
+//            *find = '\0'; // place a null character there
+//        else
+//            while (getchar() != '\n')
+//                continue;
+//    }
+//    return ret_val;
+//}
+
+//(2) -- drop_spaceº¯Êý·µ»ØµÄÊÇÒ»¸öÐÂµÄposº¯Êý£¬ÆäÎª½«origº¯ÊýµÄ¿Õ¸ñÉ¾³ý£¬ÔÙ½«orig¸´ÖÆ¸øpos.
+//#include <stdio.h>
+//#include <string.h> // for strchr();
+//
+//#define LEN 81
+//
+//char* drop_space(char* s);
+//
+//char* s_gets(char* st, int n);
+//
+//int main(void)
+//{
+//    char orig[LEN];
+//
+//    puts("Enter a string of 80 characters or less:");
+//    while (s_gets(orig, LEN) && orig[0] != '\0')
+//    {
+//        drop_space(orig);
+//        puts(orig);
+//        puts("Enter next string (or just Enter to quit):");
+//    }
+//    puts("Bye!");
+//    return 0;
+//}
+//char* drop_space(char* s)
+//{
+//    char* pos=s;
+//   
+//    for (; *s != '\0'; s++)
+//    {
+//        *pos = *s;
+//        while (*s == ' ')
+//        {
+//            *pos = *(++s);
+//        }
+//        pos++;
+//    }
+//    *pos = '\0';
+//    return pos;
+//}
+//
+//char* s_gets(char* st, int n)
+//{
+//    char* ret_val;
+//    char* find;
+//
+//    ret_val = fgets(st, n, stdin);
+//    if (ret_val)
+//    {
+//        find = strchr(st, '\n'); // look for newline
+//        if (find) // if the address is not NULL,
+//            *find = '\0'; // place a null character there
+//        else
+//            while (getchar() != '\n')
+//                continue;
+//    }
+//    return ret_val;
+//}
+
+
+/* Programming Exercise 11-11 */
+//
+//#include <stdio.h>
+//#include <string.h>
+//#include <ctype.h>
+//#define SIZE 80
+//#define NUMBER 5
+//
+//void show_menu(void);
+//void input_string(int number, char st[][SIZE]);
+//void print_original(int number, char st[][SIZE]);
+//void print_ascii(int number, char st[][SIZE]);
+//void print_length(int number, char st[][SIZE]);
+//void print_words(int number, char st[][SIZE]);
+//void sort_order(int number, int order[][2]);
+//int get_word_length(char* input);
+//
+//int main(int argc, char* argv[]) {
+//    char test[NUMBER][SIZE];
+//    int selected;
+//    input_string(NUMBER, test);
+//    show_menu();
+//    scanf("%d", &selected);
+//    while (selected != 5) 
+//    {
+//        switch (selected) 
+//        {
+//        case 1: print_original(NUMBER, test); break;
+//        case 2: print_ascii(NUMBER, test); break;
+//        case 3: print_length(NUMBER, test); break;
+//        case 4: print_words(NUMBER, test); break;
+//        case 5: break;
+//        default:
+//            printf("Error select, retry!\n");
+//        }
+//        show_menu();
+//        scanf("%d", &selected);
+//    }
+//    printf("All done, bye.");
+//}
+//
+//void show_menu() {
+//    printf("==============================================================\n");
+//    printf("1) print original strings.   2) print string by ascii order\n");
+//    printf("3) printf string by length.  4) print string by word length\n");
+//    printf("5) quit.\n");
+//    printf("===============================================================\n");
+//}
+//void input_string(int number, char st[][SIZE]) 
+//{
+//
+//    printf("Please input 5 strings serperate by enter.\n");
+//    for(int i = 0;i< number ;i++)
+//    {
+//        fgets(st[i],SIZE,stdin);
+//    }
+//}
+//void print_original(int number, char st[][SIZE])
+//{
+//
+//    printf("print 5 strings in original mode.\n");
+//    for(int i = 0;i< number ;i++)
+//    {
+//        printf("%d. %s",i+1,st[i]);
+//    }
+//}
+//void print_ascii(int number, char st[][SIZE])
+//{
+//    printf("print 5 strings in ascii mode.\n");
+//    int order[NUMBER][2];
+//    for(int i = 0;i< number ;i++)
+//    {
+//
+//    order[i][0] = i;
+//    order[i][1] = st[i][0];
+//    }
+//
+//sort_order(number, order);
+//
+//for(int i = 0;i < number ;i++)
+//{
+//
+//    printf("ASCII No.%d. %s",i+1,st[order[i][0]]);
+//}
+//}
+//void print_length(int number, char st[][SIZE])
+//{
+//    printf("print 5 strings in length mode.\n");
+//    int order[NUMBER][2];
+//    for(int i = 0;i< number ;i++)
+//    {
+//        order[i][0] = i;
+//        order[i][1] = strlen( st[i]);
+//    }
+//
+//    sort_order(number, order);
+//
+//    for(int i = 0;i < number ;i++)
+//    {
+//        printf("LENGTH No.%d. %s",i+1,st[order[i][0]]);
+//    }
+//}
+//void print_words(int number, char st[][SIZE])
+//{
+//    printf("print 5 strings in words mode.\n");
+//    int order[NUMBER][2];
+//    for(int i = 0;i< number ;i++)
+//    {
+//        order[i][0] = i;
+//        order[i][1] = get_word_length(st[i]);
+//    }
+//
+//    sort_order(number, order);
+//
+//    for(int i = 0;i < number ;i++)
+//    {
+//        printf("WORDS No.%d. %s",i+1,st[order[i][0]]);
+//    }
+//}
+//
+//
+//void sort_order(int number, int order[][2])
+//{
+//
+//    int temp[2];
+//    for(int i = 0;i< number-1 ;i++)
+//    {
+//        for(int j = 0  ;j < number -1-i ;j++)
+//        {
+//            if(order[j][1] > order[j+1][1])
+//            {
+//                temp[0] = order[j][0];
+//                temp[1] = order[j][1];
+//                order[j][0] = order[j+1][0];
+//                order[j][1] = order[j+1][1];
+//                order[j+1][0] = temp[0];
+//                order[j+1][1] = temp[1];
+//            }
+//        }
+//    }
+//}
+//
+//int get_word_length(char *input)
+//{
+//
+//    char *in = input;
+//    int length = 0;
+//    while(isalpha(*in) == 0) in++;
+//
+//while (isalpha(*in) != 0) 
+//{
+//    in++;
+//    length++;
+//}
+//
+//return length;
+//}
+
+
+/* Programming Exercise 11-12 */
+//#include <stdio.h>
+//#include <ctype.h>
+//
+//#define SIZE 256
+//
+//int check_words(char* input);
+//int check_upper(char* input);
+//int check_lower(char* input);
+//int check_punct(char* input);
+//int chech_digit(char* input);
+//
+//int main(int argc, char *argv[]) 
+//{
+//    char input[SIZE];
+//    int i = 0;
+//    while((input[i++] = getchar()) != EOF)
+//    {
+//        if( i >= SIZE )
+//        {
+//            printf("Over flowed.\n");
+//            break;
+//        }
+//    }
+//
+//
+//    printf("Hello you input complete.\nNow let's counting.\n");
+//    printf("Input words %d.\n",check_words(input));
+//    printf("Input upper char %d.\n",check_upper(input));
+//    printf("Input loewer char %d.\n",check_lower(input));
+//    printf("Input punct char %d.\n",check_punct(input));
+//    printf("Input digital  %d.\n",chech_digit(input));
+//
+//
+//}
+//
+//int check_words(char* input)
+//{
+//
+//int count = 0;
+//int start = 0;
+//while (*input != EOF) 
+//{
+//    if (isalpha(*input) == 0 && start == 0) 
+//    {
+//        input++;
+//    }
+//    else if (isalpha(*input) == 0 && start == 1) 
+//    {
+//        input++;
+//        count++;
+//        start = 0;
+//    }
+//    else if (isalpha(*input) != 0) 
+//    {
+//        input++;
+//        start = 1;
+//    }
+//}
+//if (start == 1) count++;
+//return count;
+//}
+//
+//int check_upper(char* input) 
+//{
+//    int count = 0;
+//    while (*input != EOF) 
+//    {
+//        if (isupper(*input++) != 0)
+//            count++;
+//    }
+//    return count;
+//}
+//
+//int check_lower(char* input) 
+//{
+//    int count = 0;
+//    while (*input != EOF) 
+//    {
+//        if (islower(*input++) != 0)
+//            count++;
+//    }
+//    return count;
+//}
+//
+//int check_punct(char* input) 
+//{
+//    int count = 0;
+//    while (*input != EOF) 
+//    {
+//        if (ispunct(*input++) != 0)
+//            count++;
+//    }
+//    return count;
+//}
+//
+//int chech_digit(char* input) 
+//{
+//    int count = 0;
+//    while (*input != EOF) 
+//    {
+//        if (isdigit(*input++) != 0)
+//            count++;
+//    }
+//    return count;
+//}
+
+
+/* Programming Exercise 11-13 */
+//#include <stdio.h>
+//#include <string.h>
+//#include <ctype.h>
+//
+//#define SIZE 80
+//
+//int check_words(char* input);
+//
+//int main(int argc, char* argv[])
+//{
+//    char test_string[SIZE];
+//    char* p = NULL;
+//    char dy[SIZE] = { 0 };
+//    int k = 0;
+//
+//    printf("Enter a string (enter to quit.): ");
+//    fgets(test_string, SIZE, stdin);
+//    while (*test_string != '\n')
+//    {
+//           k=check_words(test_string);
+//           // printf("Done!\nNow the invert string is :\n");
+//       // printf("Another? Enter a string (enter to quit.):");
+//        fgets(test_string, SIZE, stdin);
+//    };
+//}
+//
+//int  check_words(char* input)
+//{
+//
+//int count = 0;
+//int start = 0;
+//int numb = 0;   //¼ÇÂ¼µ¥´Ê³¤¶È
+//int i = 0;
+//int sd = 0;     //¼ÇÂ¼·Çµ¥´Ê³¤¶È
+//int sh = 0;     //¼ÇÂ¼´òÓ¡µ¥´Ê¸öÊý
+//char arry[SIZE][SIZE] = { 0 };
+//char* vc = input;
+//char* xc = input;
+//
+//while (*input != EOF) 
+//{
+//
+//    if (isalpha(*input) == 0 && start == 0) 
+//    {
+//        input++;
+//        sd++;               //¼ÇÂ¼·Çµ¥´Ê³¤¶È
+//        vc = (vc + numb+1);
+//    }
+//    else if (isalpha(*input) == 0 && start == 1) 
+//    {
+//        sd++;        //¼ÇÂ¼·Çµ¥´Ê³¤¶È
+//        input++;      //ÏÂÒ»¸ö×Ö·û
+//        count++;      //Í³¼Æµ¥´Ê¸öÊý
+//        start = 0;
+//        strncpy(arry[i][SIZE], vc, numb);
+//        numb = 0;
+//        i++;
+//
+//    }
+//    else if (isalpha(*input) != 0) 
+//    {
+//        input++;      //ÏÂÒ»¸ö×Ö·û
+//        start = 1;
+//        numb++;         //¼ÇÂ¼µ¥´Ê³¤¶È
+//        sd = 0;
+//    }
+//}
+//if (start == 1)
+//{
+//    count++;
+//    strncpy(arry[i], vc, numb);
+//}
+//for (sh = 0; sh < count && i >=0; sh++)
+//{
+//    printf("%s\n",arry[i]);
+//    i--;
+//}
+//return count;
+//}
+
+
+//#include <stdio.h>
+//#include <string.h>
+//#include <ctype.h>
+//
+//#define SIZE 80
+//
+//int check_words(char* input);
+//
+//int main(int argc, char* argv[])
+//{
+//    char test_string[SIZE];
+//    char* p = NULL;
+//    char dy[SIZE] = { 0 };
+//    int k = 0;
+//
+//    printf("Enter a string (enter to quit.): ");
+//    fgets(test_string, SIZE, stdin);
+//    while (*test_string != '\n')
+//    {
+//           k=check_words(test_string);
+//           // printf("Done!\nNow the invert string is :\n");
+//       // printf("Another? Enter a string (enter to quit.):");
+//        fgets(test_string, SIZE, stdin);
+//    };
+//}
+//
+//int  check_words(char input[SIZE])
+//{
+//
+//int count = 0;
+//int start = 0;
+//int numb = 0;   //¼ÇÂ¼µ¥´Ê³¤¶È
+//int i = 0;
+//int sh = 0;     //¼ÇÂ¼´òÓ¡µ¥´Ê¸öÊý
+//int we = 1;
+//int as = 1;
+//char arry[SIZE][SIZE] = { 0 };
+//char* xc = input;
+//char* vc = input;
+//
+//while (*input != EOF) 
+//{
+//
+//    if (isalpha(*input) == 0 && start == 0) 
+//    {
+//        input++;
+//        as = 2;
+//    }
+//    else if (isalpha(*input) == 0 && start == 1) 
+//    {
+//        if (we == 1)
+//        {
+//            strncpy(arry[i], xc, numb);
+//        }
+//        we = 0;
+//        strncpy(arry[i], vc, numb);
+//        input++;      //ÏÂÒ»¸ö×Ö·û
+//        count++;      //Í³¼Æµ¥´Ê¸öÊý
+//        start = 0;
+//        arry[i][numb] = '\0';
+//        numb = 0;
+//        as = 2;
+//        i++;
+//    }
+//    else if (isalpha(*input) != 0) 
+//    {
+//        if (as == 2)
+//        {
+//            vc = input;
+//        }
+//        as = 1;
+//        input++;      //ÏÂÒ»¸ö×Ö·û
+//        start = 1;
+//        numb++;         //¼ÇÂ¼µ¥´Ê³¤¶È
+//        
+//    }
+//}
+//if (start == 1)
+//{
+//    count++;
+//    strncpy(arry[i], vc, numb);
+//}
+//for (;i >=0; i--)
+//{
+//    printf("%s\n",arry[i]);
+//}
+//return count;
+//}
+
+/* Programming Exercise 11-13 */
+/*Í¨¹ýÃüÁîÐÐÊäÈë²ÎÊý*/
+//#include <stdio.h>
+//#include <stdlib.h>
+//int main(int argc, char* argv[])
+//{
+//    int count;
+//
+//    for (count = argc - 1; count > 0; count--)
+//        printf("%s ", argv[count]);
+//    printf("\n");
+//    return 0;
+//}
+
+
+/* Programming Exercise 11-14 */
+/*ÃüÁîÐÐÊäÈë²ÎÊýµÄ·½·¨£ºÖ±½ÓÔÚÃüÁîÐÐÄÇÀïÊäÈëÏëÊäÈëµÄ²ÎÊý£¬Ã¿¸ö²ÎÊýÖ®¼äÁôÒ»¸ö¿Õ¸ñ£¬Èç£º2.0 3*/
+//
+//#include <stdio.h>
+//#include <stdlib.h> /* for atof() */
+//#include <math.h> /* for pow() */
+//
+//int main(int argc, char* argv[])
+//{
+//    double num, exp;
+//
+//    if (argc != 3)
+//        printf("Usage: %s number exponent\n", argv[0]);
+//    else
+//    {
+//        num = atof(argv[1]);
+//        exp = atof(argv[2]);
+//        printf("%f to the %f power = %g\n", num, exp, pow(num, exp));
+//    }
+//
+//    return 0;
+//}
+
+
+/* Programming Exercise 11-15 */
+//
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <string.h>
+//#include <ctype.h>
+//
+//int go_atoi(char* ptr);
+//
+//int main()
+//{
+//    char a[50];
+//    printf("×Ö·û´®ÊäÈë£º\n");
+//    gets(a);
+//    printf("Êý×ÖÊä³ö£º\n");
+//    printf("%d\n", go_atoi(a));
+//    return 0;
+//}
+//
+//int go_atoi(char* ptr) 
+//{
+//    int i = 0;
+//    int ten_power = 1;
+//    int sum = 0;
+//    while (ptr[i] != '\0') 
+//    {
+//        if (!isdigit(ptr[i]))
+//        {
+//            return 0;     //¼ì²é´ÓÍ·µ½Î²ÓÐÃ»ÓÐ·ÇÊý×Ö£¬¼ÇµÃ²»ÒªÓÃfget£¬
+//                         //fget»áÂ¼Èë»Ø³µ
+//        }
+//        i++;
+//    }
+//    i--;         //ÕâÀïµÄi--ÊÇ×îºóÒ»¸öÊý×Ö£¨¸öÎ»£©µÄÏÂ±ê
+//    sum = ptr[i] - '0';      //°Ñ¸öÎ»¼Ó¸øsum , Êý×Ö×Ö·ûµÄASCIIÂëÔÚ48-57Ö®¼ä
+//    while (--i >= 0)
+//    {
+//        ten_power *= 10;   // iÃ¿´Î¼õ1¶¼ÉýÎ»
+//        sum += (ptr[i] - '0') * ten_power;//°ÙÎ»³Ë°Ù£¬Ç§Î»³ËÇ§£¬¼Ó¸øsum
+//    }
+//    return sum;
+//}
+
+
+/* Programming Exercise 11-16 */
+//
+//#include <stdio.h>
+//#include <ctype.h>
+//
+//int main(int argc, char* argv[])
+//{
+//    char mode = 'p';
+//    int ok = 1;
+//    int ch;
+//
+//    if (argc > 2)
+//    {
+//        printf("Usage: %s [-p | -u | -l]\n", argv[0]);
+//        ok = 0; /* skip processing input */
+//    }
+//    else if (argc == 2)
+//    {
+//        if (argv[1][0] != '-')
+//        {
+//            printf("Usage: %s [-p | -u | -l]\n", argv[0]);
+//            ok = 0;
+//        }
+//        else
+//            switch (argv[1][1])
+//            {
+//            case 'p':
+//            case 'u':
+//            case 'l': mode = argv[1][1];
+//                break;
+//            default: printf("%s is an invalid flag; ", argv[1]);
+//                printf("using default flag (-p).\n");
+//            }
+//    }
+//
+//    if (ok)
+//        while ((ch = getchar()) != EOF)
+//        {
+//            switch (mode)
+//            {
+//            case 'p': putchar(ch);
+//                break;
+//            case 'u': putchar(toupper(ch));
+//                break;
+//            case 'l': putchar(tolower(ch));
+//            }
+//        }
+//
+//    return 0;
+//}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
