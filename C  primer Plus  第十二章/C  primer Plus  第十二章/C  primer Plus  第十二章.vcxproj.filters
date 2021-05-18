@@ -22,4 +22,18 @@
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="diceroll.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="pe12-3a.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="pe12-2a.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="random.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
 </Project>

@@ -54,3 +54,84 @@
 //{
 //    next = seed;
 //}
+
+
+/* ≥Ã–Ú«Âµ•12.11 -- diceroll.c -- dice role simulation */
+/* compile with mandydice.c           */
+//#include "diceroll.h"
+//#include <stdio.h>
+//#include <stdlib.h>           /* for library rand()   */
+//
+//int roll_count = 0;          /* external linkage     */
+//
+//static int rollem(int sides)  /* private to this file */
+//{
+//    int roll;
+//
+//    roll = rand() % sides + 1;
+//    ++roll_count;             /* count function calls */
+//
+//    return roll;
+//}
+//
+//int roll_n_dice(int dice, int sides)
+//{
+//    int d;
+//    int total = 0;
+//    if (sides < 2)
+//    {
+//        printf("Need at least 2 sides.\n");
+//        return -2;
+//    }
+//    if (dice < 1)
+//    {
+//        printf("Need at least 1 die.\n");
+//        return -1;
+//    }
+//
+//    for (d = 0; d < dice; d++)
+//        total += rollem(sides);
+//
+//    return total;
+//}
+
+
+/* Programming Exercise 12-3 */
+// compile with pe12-3b.c
+//#include <stdio.h>
+//#include "pe12-3a.h"
+//
+//void check_mode(int* pm)
+//{
+//	if (*pm != METRIC && *pm != US)
+//	{
+//		printf("Invalid mode specified. Mode %d\n", *pm);
+//		printf("Previous mode will be used.\n");
+//		*pm = USE_RECENT;
+//	}
+//}
+//
+//void get_info(int mode, double* pd, double* pf)
+//{
+//	if (mode == METRIC)
+//		printf("Enter distance traveled in kilometers: ");
+//	else
+//		printf("Enter distance traveled in miles: ");
+//	scanf("%lf", pd);
+//	if (mode == METRIC)
+//		printf("Enter fuel consumed in liters: ");
+//	else
+//		printf("Enter fuel consumed in gallons: ");
+//	scanf("%lf", pf);
+//}
+//
+//void show_info(int mode, double distance, double fuel)
+//{
+//	printf("Fuel consumption is ");
+//	if (mode == METRIC)
+//		printf("%.2f liters per 100 km.\n", 100 * fuel / distance);
+//	else
+//		printf("%.1f miles per gallon.\n", distance / fuel);
+//}
+
+
