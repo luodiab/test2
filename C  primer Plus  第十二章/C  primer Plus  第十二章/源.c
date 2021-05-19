@@ -276,7 +276,7 @@
 //}
 
 
-/* 程序清单12.14 -- where.c -- where's the memory? */
+/* 程序清单12.15 -- where.c -- where's the memory? */
 //
 //#include <stdio.h>
 //#include <stdlib.h>
@@ -486,6 +486,7 @@
 
 
 /* Programming Exercise 12-5 */
+//(1)
 //#include <stdio.h>
 //#include <stdlib.h>              /* for library srand() */
 //#include <time.h>                /* for time()          */
@@ -529,5 +530,250 @@
 //            printf("\n");
 //    }
 //
+//    return 0;
+//}
+
+
+//(2)
+//#include <stdio.h>
+//#include <stdlib.h>
+//void print(const int array[], int limit);
+//void sort(int array[], int limit);
+//#define SIZE 100
+//int main(void)
+//{
+//	int i;
+//	int arr[SIZE];
+//
+//	for (i = 0; i < SIZE; i++)
+//		arr[i] = rand() % 10 + 1;
+//	puts("initial array");
+//	print(arr, SIZE);
+//	sort(arr, SIZE);
+//	puts("\nsorted array");
+//	print(arr, SIZE);
+//
+//	return 0;
+//}
+///* sort.c -- sorts an integer array in decreasing order */
+//void sort(int array[], int limit)
+//{
+//	int top, search, temp;
+//	for (top = 0; top < limit - 1; top++)
+//		for (search = top + 1; search < limit; search++)
+//			if (array[search] > array[top])
+//			{
+//				temp = array[search];
+//				array[search] = array[top];
+//				array[top] = temp;
+//			}
+//}
+///* print.c -- prints an array */
+//void print(const int array[], int limit)
+//{
+//	int index;
+//	for (index = 0; index < limit; index++)
+//	{
+//		printf("%2d ", array[index]);
+//		if (index % 10 == 9)
+//			putchar('\n');
+//	}
+//	if (index % 10 != 0) // if last line not complete
+//		putchar('\n');
+//}
+
+
+/* Programming Exercise 12-6 */
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <time.h>
+//#define SIZE 10
+//#define LENGTH 1000
+//
+//int main(int argc, char* argv[]) 
+//{
+//    int data_count[SIZE + 1];
+//    int datum;
+//    for (int seed = 1; seed <= 10; seed++) 
+//    {
+//        printf("This is %d round to create data.\n", seed);
+//        srand(seed);
+//
+//        for (int i = 0; i <= SIZE; i++)
+//        {
+//            data_count[i] = 0;
+//        }
+//        for (int i = 0; i < LENGTH; i++) 
+//        {
+//            datum = rand() % 10 + 1;
+//            data_count[datum]++;
+//    
+//        }
+//        printf("Random data created,let's stata it.\n");
+//        for (int i = 1; i <= SIZE; i++) 
+//        {
+//            printf("The datum %d created %d times.\n", i, data_count[i]);
+//        
+//        }
+//    }
+//    return 0;
+//}
+
+
+/* Programming Exercise 12-7 */
+/* manydice.c -- multiple dice rolls                    */
+/* compile with diceroll.c                              */
+//#include <stdio.h>
+//#include <stdlib.h>              /* for library srand() */
+//#include <time.h>                /* for time()          */
+//#include "diceroll.h"            /* for roll_n_dice()   */
+///* and for roll_count  */
+//#define ASD 100
+//
+//int main(void)
+//{
+//    int roll[ASD] = { 0 };
+//    int dice;
+//    int sides;
+//    int status;
+//    int set;
+//    int k = 0;
+//    int j;
+//
+//    srand((unsigned int)time(0)); /* randomize seed      */
+//    printf("Enter the number of set; enter q to stop:");
+//    while (scanf("%d", &set) == 1 && set > 0)
+//    {
+//        printf("How many sides and how many dice? ");
+//        if ((status = scanf("%d %d", &sides,&dice)) != 2)
+//        {
+//            if (status == EOF)
+//                break;             /* exit loop           */
+//            else
+//            {
+//                printf("You should have entered an integer.");
+//                printf(" Let's begin again.\n");
+//                while (getchar() != '\n')
+//                    continue;     /* dispose of bad input */
+//                printf("How many sides? Enter 0 to stop.\n");
+//                continue;         /* new loop cycle       */
+//            }
+//        }
+//        printf("Here are %d sets of %d %d-sided throws.\n", set, dice, sides);
+//        for (k = 0; k < set; k++)
+//        {
+//            roll[k] = roll_n_dice(dice, sides);
+//        }
+//        for (k = 0; k < set; k++)
+//        {
+//            printf("%2d ", roll[k]);
+//            j = k + 1;
+//            if (j % 15 == 0)
+//            {
+//                printf("\n");
+//            }
+//        }
+//        printf("\nHow many set; enter q to stop:");
+//    }
+//    printf("The rollem() function was called %d times.\n",
+//        roll_count);           /* use extern variable */
+//    printf("GOOD FORTUNE TO YOU!\n");
+//
+//    return 0;
+//}
+
+
+/* Programming Exercise 12-8 */
+//#include <stdio.h>
+//#include <stdlib.h>
+//
+//int* make_array(int elem, int val);
+//void show_array(const int ar[], int n);
+//
+//int main(int argc, char *argv[])
+//{
+//   int * pa;
+//   int size;
+//   int value;
+//   printf("Enter the number of elements: ");
+//   while (scanf("%d", &size) == 1 && size > 0)
+//   {
+//      printf("Enter the initialization value: ");
+//      scanf("%d", &value);
+//      pa = make_array(size, value);
+//      if (pa)
+//      {
+//         show_array(pa, size);
+//         free(pa);
+//      }
+//      printf("Enter the number of elements (<1 to quit): ");
+//   }
+//   printf("Done.\n");
+//   return 0;
+//}
+//
+//int* make_array(int elem, int val)
+//{
+//    int* arry = (int*)malloc(elem * sizeof(int));
+//    int k = 0;
+//if (arry == NULL) return NULL;
+//    for (k = 0; k < elem; ++k)
+//    {
+//        arry[k] = val;
+//    }
+//    return arry;
+//}
+//
+//void show_array(const int ar[], int n)
+//{
+//    int i = 0;
+//    for (i = 0; i < n; i++)
+//    {
+//        printf("%2d ", ar[i]);
+//        if ((i+1) % 8 == 0)
+//        {
+//            printf("\n");
+//        }
+//    }
+//    printf("\n");
+//}
+
+
+/* Programming Exercise 12-9 */
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <string.h>
+//
+//int main(int argc, char* argv[]) 
+//{
+//    int amount;
+//    printf("How many words do you wish to enter: ");
+//    scanf("%d", &amount);
+//    printf("Enter %d words now:\n ", amount);
+//    char** pst = (char**)malloc(amount * sizeof(char*));
+//
+//    for (int i = 0; i < amount; i++) 
+//    {
+//        char temp[100];
+//        scanf("%s", temp);    //scanf扫描到字符后面的空格时，就认为对temp的赋值结束，并忽略了后面的字符。
+//                              //scanf()在读取数字时会跳过空格、制表符和换行符！
+//                              /*scanf()函数接收输入数据时，遇以下情况结束一个数据的输入：（不是结束该scanf函数，scanf函数仅在每一个数据域均有数据，并按回车后结束）。 
+//                               ① 遇空格、“回车”、“跳格”键。
+//                               ② 遇宽度结束。
+//                               ③ 遇非法输入。*/
+//        int length = strlen(temp);
+//
+//        char* str = (char*)malloc(length * sizeof(char));
+//
+//        strcpy(str,temp);
+//        *( pst + i) = str;
+//
+//    }
+//    for (int i = 0; i < amount; i++) 
+//    {
+//        printf("%s\n",*(pst+i));
+//    }
+//    free(pst);
+//    printf("All done!\n");
 //    return 0;
 //}
