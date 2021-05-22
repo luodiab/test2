@@ -426,3 +426,698 @@
 //
 //    return 0;
 //}
+
+
+/* Programming Exercise 13-4 */
+//
+//#include <stdio.h>
+//#include <stdlib.h>
+//
+//int main(int argc, char* argv[])
+//{
+//    int i, temp;
+//    FILE* source;
+//
+//    if (argc == 1)
+//    {
+//        fprintf(stderr, "Usage: %s filename[s]\n", argv[0]);
+//        exit(EXIT_FAILURE);
+//    }
+//    for (i = 1; i < argc; i++)
+//    {
+//        if ((source = fopen(argv[i], "r")) == NULL)
+//        {
+//            fprintf(stderr, "Can't open file %s\n", argv[i]);
+//            continue;
+//        }
+//        printf("File %s:\n", argv[i]);
+//        while ((temp = getc(source)) != EOF)
+//        {
+//            putchar(temp);
+//        }
+//        putchar('\n');
+//        if (fclose(source) != 0)
+//        {
+//            fprintf(stderr, "Can't close file %s\n", argv[i]);
+//        }
+//    }
+//
+//    return 0;
+//}
+
+
+/* Programming Exercise 13-5 */
+//
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <string.h>
+//
+//#define BUFSIZE 4096
+//#define SLEN 81
+//
+//void append(FILE* source, FILE* dest);
+//
+//int main(int argc, char* argv[])
+//{
+//    int i, ch;
+//    int files = 0;
+//    FILE* fa;
+//    FILE* fs;
+//
+//    if (argc < 3)
+//    {
+//        printf("Usage: %s appendfile sourcefile.\n", argv[0]);
+//        exit(EXIT_FAILURE);
+//    }
+//    if ((fa = fopen(argv[1], "a+")) == NULL)
+//    {
+//        fprintf(stderr, "Can't open %s\n", argv[1]);
+//        exit(EXIT_FAILURE);
+//    }
+//    if (setvbuf(fa, NULL, _IOFBF, BUFSIZE) != 0)
+//    {
+//        //↑设置缓冲区大小为BUFSIZE;
+//        //↑_IOFBF表示完全缓冲;
+//        //↑NULL表示为fa指向的文件分配缓冲区;
+//        fputs("Can't create output buffer\n", stderr);
+//        exit(EXIT_FAILURE);
+//    }
+//    for (i = 2; i < argc; i++)
+//    {
+//        if (strcmp(argv[i], argv[1]) == 0)
+//        {
+//            fputs("Can't append file to itself\n", stderr);
+//            //↑防止文件自身附加在文件末尾;
+//        }
+//        else if ((fs = fopen(argv[i], "r")) == NULL)
+//        {
+//            fprintf(stderr, "Can't open %s\n", argv[i]);
+//        }
+//        else
+//        {
+//            if (setvbuf(fs, NULL, _IOFBF, BUFSIZE) != 0)
+//            {
+//                //↑同上一个setvbuf函数所述;
+//                //↑本次调用是为fs指向的文件分配缓冲区;
+//                fputs("Can't create input buffer\n", stderr);
+//                continue;
+//            }
+//            append(fs, fa);
+//            if (ferror(fs) != 0)
+//            {
+//                /*↑当读或写出现错误
+//                ferror函数返回一个非0值*/
+//                fprintf(stderr, "Error in reading file %s.\n", argv[i]);
+//            }
+//            if (ferror(fa) != 0)
+//            {
+//                fprintf(stderr, "Error in writing file %s.\n", argv[1]);
+//            }
+//            fclose(fs);
+//            files++;
+//            printf("File %s appended.\n", argv[i]);
+//        }
+//    }
+//    printf("Done appending. %d files appended.\n", files);
+//    rewind(fa); //返回文件起始处;
+//    printf("%s contents:\n", argv[1]);
+//    while ((ch = getc(fa)) != EOF)
+//    {
+//        putchar(ch);
+//    }
+//    putchar('\n');
+//    puts("Done displaying.");
+//    fclose(fa);
+//
+//    return 0;
+//}
+//
+//void append(FILE* source, FILE* dest)
+//{
+//    size_t bytes;
+//    static char temp[BUFSIZE];
+//    //↑静态无链接变量只分配一次内存;
+//
+//    while ((bytes = fread(temp, sizeof(char), BUFSIZE, source)) > 0)
+//    {
+//        /*↑fread函数把source指向的
+//        文件中的BUFSIZE块char类型的
+//        数据写入temp数组中,返回值是成功
+//        读取数据块的数量;*/
+//        fwrite(temp, sizeof(char), bytes, dest);
+//        /*↑fwrite函数把temp数组中的
+//        bytes块char类型的数据写入dest
+//        指向的文件中,返回值是成功写入数据
+//        块的数量;*/
+//    }
+//
+//    return;
+//}
+
+
+/* Programming Exercise 13-6 */
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <string.h>
+//
+//#define LEN 40
+//
+//int main(int argc, char* argv[])
+//{
+//    FILE* in, * out;
+//    int ch;
+//    char name[LEN];
+//    int count = 0;
+//    char temp[LEN];
+//
+//    printf("Please enter a filename:\n");
+//    scanf("%39s", temp);
+//
+//    if ((in = fopen(temp, "r")) == NULL)
+//    {
+//        fprintf(stderr, "I could't open the file \"%s\"\n", temp);
+//        exit(EXIT_FAILURE);
+//    }
+//    //↓拷贝文件名;
+//    strncpy(name, temp, LEN - 5);
+//    name[LEN - 5] = '\0';
+//    strcat(name, ".red");
+//    //↑在文件名后面添加.red;
+//    if ((out = fopen(name, "w")) == NULL)
+//    {
+//        fprintf(stderr, "Can't create output file.\n");
+//        exit(3);
+//    }
+//    //↓拷贝数据;
+//    while ((ch = getc(in)) != EOF)
+//    {
+//        if (count++ % 3 == 0)
+//        {
+//            putc(ch, out);
+//        }
+//    }
+//    if (fclose(in) != 0 || fclose(out) != 0)
+//    {
+//        fprintf(stderr, "Error in closing files\n");
+//    }
+//
+//    return 0;
+//}
+
+
+/* Programming Exercise 13-7.a */
+//
+//#include <stdio.h>
+//#include <stdlib.h>
+//
+//int main(int argc, char* argv[])
+//{
+//    FILE* f1;
+//    FILE* f2;
+//    int ch1, ch2;
+//
+//    if (argc != 3)
+//    {
+//        printf("Usage: %s file1 file2\n", argv[0]);
+//        exit(EXIT_FAILURE);
+//    }
+//    if ((f1 = fopen(argv[1], "r")) == NULL)
+//    {
+//        fprintf(stderr, "Can't open file %s\n", argv[1]);
+//        exit(EXIT_FAILURE);
+//    }
+//    if ((f2 = fopen(argv[2], "r")) == NULL)
+//    {
+//        fprintf(stderr, "Can't open file %s\n", argv[2]);
+//        exit(EXIT_FAILURE);
+//    }
+//
+//    ch1 = getc(f1);
+//    ch2 = getc(f2);
+//    while (ch1 != EOF || ch2 != EOF)
+//    {
+//        while (ch1 != EOF && ch1 != '\n')
+//        {
+//            putchar(ch1);
+//            ch1 = getc(f1);
+//        }
+//        if (ch1 != EOF)
+//        {
+//            putchar('\n');
+//            ch1 = getc(f1); //光标读取至文件1的下一行;
+//        }
+//        while (ch2 != EOF && ch2 != '\n')
+//        {
+//            putchar(ch2);
+//            ch2 = getc(f2);
+//        }
+//        if (ch2 != EOF)
+//        {
+//            putchar('\n');
+//            ch2 = getc(f2); //光标读取至文件2的下一行;
+//        }
+//    }
+//    if (fclose(f1) != 0)
+//    {
+//        fprintf(stderr, "Can't close %s\n", argv[1]);
+//    }
+//    if (fclose(f2) != 0)
+//    {
+//        fprintf(stderr, "Can't close %s\n", argv[2]);
+//    }
+//
+//    return 0;
+//}
+
+
+/* Programming Exercise 13-7.b.1 */
+//
+//#include <stdio.h>
+//#include <stdlib.h>
+//
+//int main(int argc, char* argv[])
+//{
+//    FILE* f1;
+//    FILE* f2;
+//    int ch1, ch2;
+//    int x = 1;
+//
+//    if (argc != 3)
+//    {
+//        printf("Usage: %s file1 file2\n", argv[0]);
+//        exit(EXIT_FAILURE);
+//    }
+//    if ((f1 = fopen(argv[1], "r")) == NULL)
+//    {
+//        fprintf(stderr, "Can't open file %s\n", argv[1]);
+//        exit(EXIT_FAILURE);
+//    }
+//    if ((f2 = fopen(argv[2], "r")) == NULL)
+//    {
+//        fprintf(stderr, "Can't open file %s\n", argv[2]);
+//        exit(EXIT_FAILURE);
+//    }
+//
+//    ch1 = getc(f1);
+//    ch2 = getc(f2);
+//    while (ch1 != EOF || ch2 != EOF)
+//    {
+//        while (ch1 != EOF && ch1 != '\n')
+//        {
+//            putchar(ch1);
+//            ch1 = getc(f1);
+//        }
+//        if (ch1 != EOF)
+//        {
+//            ch1 = getc(f1); //光标读取至文件1的下一行;
+//        }
+//        while (ch2 != EOF && ch2 != '\n')
+//        {
+//            if (x == 1)
+//            {
+//                putchar(' ');
+//                putchar(' ');
+//                x = 0;
+//            }
+//            putchar(ch2);
+//            ch2 = getc(f2);
+//        }
+//        if (ch2 != EOF)
+//        {
+//            ch2 = getc(f2); //光标读取至文件2的下一行;
+//        }
+//        putchar('\n');
+//        x = 1;
+//    }
+//    if (fclose(f1) != 0)
+//    {
+//        fprintf(stderr, "Can't close %s\n", argv[1]);
+//    }
+//    if (fclose(f2) != 0)
+//    {
+//        fprintf(stderr, "Can't close %s\n", argv[2]);
+//    }
+//
+//    return 0;
+//}
+
+
+/* Programming Exercise 13-7.b.2 */
+//
+//#include <stdio.h>
+//#include <stdlib.h>
+//
+//int main(int argc, char* argv[])
+//{
+//    FILE* f1;
+//    FILE* f2;
+//    int ch1, ch2;
+//
+//    if (argc != 3)
+//    {
+//        printf("Usage: %s file1 file2\n", argv[0]);
+//        exit(EXIT_FAILURE);
+//    }
+//    if ((f1 = fopen(argv[1], "r")) == NULL)
+//    {
+//        fprintf(stderr, "Can't open file %s\n", argv[1]);
+//        exit(EXIT_FAILURE);
+//    }
+//    if ((f2 = fopen(argv[2], "r")) == NULL)
+//    {
+//        fprintf(stderr, "Can't open file %s\n", argv[2]);
+//        exit(EXIT_FAILURE);
+//    }
+//
+//    ch1 = getc(f1);
+//    ch2 = getc(f2);
+//    while (ch1 != EOF || ch2 != EOF)
+//    {
+//        while (ch1 != EOF && ch1 != '\n')
+//        {
+//            putchar(ch1);
+//            ch1 = getc(f1);
+//        }
+//        if (ch1 != EOF)
+//        {
+//            if (ch2 == EOF) //若是文件2以读取完毕则换行;
+//            {
+//                putchar('\n');
+//            }
+//            else //文件2未读取完毕打印空格隔开2个文件内容;
+//            {
+//                putchar(' ');
+//            }
+//            ch1 = getc(f1); //光标读取至文件1的下一行;
+//        }
+//        while (ch2 != EOF && ch2 != '\n')
+//        {
+//            putchar(ch2);
+//            ch2 = getc(f2);
+//        }
+//        if (ch2 != EOF)
+//        {
+//            putchar('\n');
+//            ch2 = getc(f2); //光标读取至文件2的下一行;
+//        }
+//    }
+//    if (fclose(f1) != 0)
+//    {
+//        fprintf(stderr, "Can't close %s\n", argv[1]);
+//    }
+//    if (fclose(f2) != 0)
+//    {
+//        fprintf(stderr, "Can't close %s\n", argv[2]);
+//    }
+//
+//    return 0;
+//}
+
+
+/* Programming Exercise 13-8 */
+//
+//(1) -- 为笔者自写，只能执行一个文件，没有处理多个文件的功能，为简化版。
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <string.h>
+//
+//#define MAX 41
+//
+//int main(int argc, char* argv[])
+//{
+//    FILE *fp;
+//    char words[MAX];
+//    int k=0,g=0,ch,ch2,j;
+//    int count = 0;
+//    int i = 0;
+//
+//    if (argc==2)    //判断参数是否足够，不够则回应报告。
+//    {
+//        printf("Usage: %s appendfile sourcefile.\n", argv[0]);
+//        j = argv[1][0];
+//        printf("Please enter a string of characters:\n");
+//        scanf("%s", words);
+//        int k = 1;
+//        if (k == 1)
+//        {
+//            g = strlen(words);
+//            words[g] = '\n';
+//            for (i = 0; i < g; i++)
+//            {
+//                if (j == words[i])
+//                {
+//                    ++count;
+//                }
+//            }
+//            printf("\' %c \'occurs %d times in the array words\n", j, count);
+//        }
+//    }
+//    if(argc==3)
+//    {
+//        if ((fp = fopen(argv[2], "r")) == NULL)     //判断文件是否能打开，不能打开则报告。
+//        {
+//            fprintf(stderr, "Can't open file %s\n", argv[2]);
+//        }
+//        printf("File %s:\n", argv[2]);
+//        while ((ch = getc(fp)) != EOF)     //打印文件内的内容。
+//        {
+//            putchar(ch);
+//        }
+//        rewind(fp);
+//        j = argv[1][0];
+//        ch = getc(fp);
+//        while (ch != EOF)
+//        {
+//            while (ch != EOF )
+//            {
+//                if (j == (char)ch)
+//                {
+//                    ++count;
+//                }
+//                ch = getc(fp);
+//            }
+//        }
+//        if (ch == EOF)
+//        {
+//            printf("\' %c \'occurs %d times in the array %s\n", j, count, argv[2]);
+//        }
+//        if (fclose(fp) != 0)    //判断文件是否关闭，关闭不成功则报告。
+//            fprintf(stderr, "Error closing file\n");
+//    }
+//
+//    return 0;
+//}
+
+
+
+//(2)
+//#include <stdio.h>
+//#include <string.h>
+//#include <stdlib.h>
+//
+//int search(int ch, FILE* fp);
+//
+//int main(int argc, char* argv[])
+//{
+//    FILE* fp;
+//    int i, ch, ct;
+//    int count = 0;
+//
+//    if (argc < 2)
+//    {
+//        fprintf(stderr, "Usage: %s character filename[s]\n", argv[0]);
+//        exit(EXIT_FAILURE);
+//    }
+//    if (strlen(argv[1]) != 1)
+//    {
+//        fprintf(stderr, "The second argument must be a character!\n");
+//        exit(EXIT_FAILURE);
+//    }
+//    if (argc == 2)
+//    {
+//        fp = stdin;
+//        ch = argv[1][0];
+//        printf("Please enter a string (EOF to quit): ");
+//        count = search(ch, fp);
+//        printf("%c appeared %d times.\n", ch, count);
+//    }
+//    else if (argc > 2)
+//    {
+//        ch = argv[1][0];
+//        for (i = 2; i < argc; i++)
+//        {
+//            if ((fp = fopen(argv[i], "r")) == NULL)
+//            {
+//                fprintf(stderr, "Can't open file %s\n", argv[i]);
+//                continue;
+//            }
+//            printf("File %s:\n", argv[i]);
+//            while ((ct = getc(fp)) != EOF)
+//            {
+//                putchar(ct);
+//            }
+//            rewind(fp);
+//            count = search(ch, fp);
+//            printf("%c appeared %d times in file %s\n", ch, count, argv[i]);
+//            if (fclose(fp) != 0)
+//            {
+//                fprintf(stderr, "Can't close file %s\n", argv[i]);
+//            }
+//        }
+//    }
+//
+//    return 0;
+//}
+//
+//int search(int ch, FILE* fp)
+//{
+//    int find;
+//    int n = 0;
+//
+//    while ((find = getc(fp)) != EOF)
+//    {
+//        if (ch == find)
+//        {
+//            ++n;
+//        }
+//    }
+//    return n;
+//}
+
+
+/* Programming Exercise 13-9 */
+//
+//#include <stdio.h>
+//#include <stdlib.h>
+//
+//#define MAX 41
+//
+//int main(void)
+//{
+//    FILE* fp;
+//    int ct = 0;
+//    char words[MAX];
+//
+//    if ((fp = fopen("wordy", "a+")) == NULL)
+//    {
+//        fprintf(stdout, "Can't open \"wordy\" file.\n");
+//        exit(EXIT_FAILURE);
+//    }
+//
+//    while (fgets(words, MAX, fp) != NULL)   //从fp读取文件到words.
+//    {
+//        ct++;
+//    }
+//    rewind(fp);
+//    puts("Enter words to add to the file; press the #");
+//    puts("key at the beginning of a line to terminate.");
+//    while ((fscanf(stdin, "%40s", words) == 1) && (words[0] != '#'))   //从stdin读取字符串到words.
+//    {
+//        fprintf(fp, "%-2d : %s\n", ++ct, words);
+//    }
+//
+//    puts("File contents:");
+//    rewind(fp);
+//    while (fgets(words, MAX, fp) != NULL)
+//    {
+//        fputs(words, stdout);
+//    }
+//    puts("Done!");
+//    if (fclose(fp) != 0)
+//    {
+//        fprintf(stderr, "Error in closing file\n");
+//    }
+//
+//    return 0;
+//}
+
+
+/* Programming Exercise 13-10 */
+//
+//#include <stdio.h>
+//#include <stdlib.h>
+//
+//#define LEN 50
+//
+//int main(int argc, char* argv[])
+//{
+//    int ch;
+//    FILE* fp;
+//    long int number;
+//    char filename[LEN];
+//
+//    printf("Please enter a filename: ");
+//    scanf("%49s", filename);
+//
+//    if ((fp = fopen(filename, "r")) == NULL)   //通过交互的方式获得文件名。
+//    {
+//        fprintf(stderr, "Can't open file %s\n", filename);
+//        exit(EXIT_FAILURE);
+//    }
+//    printf("Please enter a file position (<0 or q to quit): ");
+//    while (scanf("%ld", &number) == 1 && number >= 0)
+//    {
+//        fseek(fp, number, SEEK_SET);
+//        while ((ch = getc(fp)) != '\n' && ch != EOF)
+//        {
+//            /*↓打印从该位置开始到
+//            下一个换行符之前的内容;*/
+//            putchar(ch);
+//        }
+//        if (ch == EOF)
+//        {
+//            printf("The position reaches EOF.\n");
+//            break;
+//        }
+//        printf("\nYou can enter again (<0 or q to quit): ");
+//    }
+//    printf("Done.\n");
+//    if (fclose(fp) != 0)
+//    {
+//        fprintf(stderr, "Can't close file %s\n", filename);
+//    }
+//
+//    return 0;
+//}
+
+
+/* Programming Exercise 13-11 */
+//
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <string.h>
+//
+//#define SLEN 256
+//
+//int main(int argc, char* argv[])
+//{
+//    FILE* fp;
+//    char line[SLEN];
+//
+//    if (argc != 3)
+//    {
+//        fprintf(stderr, "Usage: %s string filename\n", argv[0]);
+//        exit(EXIT_FAILURE);
+//    }
+//    if ((fp = fopen(argv[2], "r")) == NULL)
+//    {
+//        fprintf(stderr, "Can't open file %s", argv[2]);
+//        exit(EXIT_FAILURE);
+//    }
+//    while (fgets(line, SLEN, fp) != NULL)    //从文件流读取一行，送到缓冲区
+//    {
+//        if (strstr(line, argv[1]) != NULL)
+//        {
+//            fputs(line, stdout);
+//        }
+//    }
+//    if (fclose(fp) != 0)
+//    {
+//        fprintf(stderr, "Can't close file %s", argv[2]);
+//    }
+//
+//    return 0;
+//}
+
+
+
